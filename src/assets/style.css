@@ -1,3 +1,42 @@
-h1 {
+head {
+    background-color: #3f3f3f;
+}
+
+body {
+    background-color: #3f3f3f;
+}
+
+.masterContainer {
+    display: flex;
+    flex-direction: row;
+    border: 2px solid rgb(167, 0, 131);
+}
+
+.container1 {
     font-family: Arial, Helvetica, sans-serif;
+    display: flex;
+    flex-direction: column;
+    border: 2px solid rgb(11, 0, 167);
+
+}
+.container2 {
+    font-family: Arial, Helvetica, sans-serif;
+    display: flex;
+    flex-direction: column;
+    border: 2px solid white;
+
+}
+
+.header {
+    color: azure;
+    background-color: #3f3f3f;
+    min-height: auto;
+}
+
+.SideBar {
+    color: azure;
+}
+
+.TodoList {
+    background-color: blue;
 }

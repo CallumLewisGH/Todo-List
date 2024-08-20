@@ -3,10 +3,6 @@
 
 <script setup>
 
-let todo_list_map = new Map();
-
-todo_list_map.set("LISTNAME INPUT", new TodoList("LISTNAME INPUT", []))
-
 class TodoList {
     constructor(list_name, todo_list,){
         this.list_name = list_name;
@@ -47,4 +43,9 @@ class mainItem {
     }
 
 }
+
+let todo_list_map = new Map();
+
+todo_list_map.set("LISTNAME INPUT", new TodoList("LISTNAME INPUT", []))
+
 </script>
