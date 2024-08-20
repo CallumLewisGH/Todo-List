@@ -7,36 +7,67 @@ body {
 }
 
 .masterContainer {
+    font-family: Arial, Helvetica, sans-serif;
     display: flex;
-    flex-direction: row;
-    border: 2px solid rgb(167, 0, 131);
+    flex-direction: column;
 }
 
 .container1 {
-    font-family: Arial, Helvetica, sans-serif;
+    background-color: #6d6d6d;
     display: flex;
-    flex-direction: column;
-    border: 2px solid rgb(11, 0, 167);
+    flex-direction: row;
+    min-width: 200vh;
+    min-height: 90vh;
 
 }
+
+
 .container2 {
-    font-family: Arial, Helvetica, sans-serif;
     display: flex;
     flex-direction: column;
-    border: 2px solid white;
+    max-height: 13vh;
 
 }
+
 
 .header {
     color: azure;
+    font-size: x-large;
     background-color: #3f3f3f;
     min-height: auto;
+    font-size: xxx-large;
 }
 
+
+
 .SideBar {
+    display: flex;
+    flex-direction: column;
+    background-color: #3f3f3f;
+    font-size: x-large;
+    text-align: center;
     color: azure;
 }
 
 .TodoList {
-    background-color: blue;
+    color: azure;
+    border: solid red;
+    border-radius: 5vh;
+}
+
+.TodoList:hover {
+    background-color: #3b3b3b;
+}
+
+.list_link {
+    height: 8vh;
+    min-width: 25vh;
+    border-radius: 3vh;
+    text-align: left;
+    text-indent: 1vh;
+    font-size: large;
+}
+
+.list_link:hover {
+    background-color: #3b3b3b;
 }
