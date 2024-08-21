@@ -1,26 +1,33 @@
 <template>
-    <template v-for="list, index in todo_list_list">
-        <div @click="loaded_list = list.value" class="list_link" id="list_link">
-            <img src="../assets/TodoListMarker.png" width="17.5%" style="float:left;">
+    <h3 style="text-align: center;">Saved</h3>
+    <template v-for="list, index in props.todo_list_list">
+        <div @click="handleLoadedList(list)" class="list_link" id="list_link">
+            <img src="../assets/TodoListMarker.png" width="17.5%" style="float:left; margin-right: 2%;">
             <span>{{list.getListName()}}</span>
         </div>
     </template>
 
     <div class="list_link" id="list_link">
         <img src="../assets/TodoListMarker.png" width="17.5%" style="float:left;">
-        <input type="text" placeholder="Enter List Name..." v-model="input_text2" @keyup.enter = "input_text2 = ''" @keydown.enter="createList(input_text2)"
-        style="size: large; background-color: #3f3f3f;min-height: 100%; border-radius: 3vh; border: #3f3f3f;  color: azure; max-width: 75%;">
+        <input type="text" placeholder="Enter List Name..." v-model="input_text" @keyup.enter = "input_text = ''" @keydown.enter="handleCreateList(input_text)"
+        style="size: large; background-color: #494949;min-height: 100%; border-radius: 3vh; border: #494949;  color: azure; max-width: 75%; text-indent: 1%;">
     </div>
 
 </template>
 
 <script setup>
+import { ref, onMounted, defineProps, defineEmits } from 'vue';
 
-import { ref, computed, onMounted } from 'vue';
-const input_text1 = ref('')
-const input_text2 = ref('')
-const todo_list_list = ref([]);
-const loaded_list = ref(null);
+const props = defineProps({
+    todo_list_list: {
+        type: Array,
+        required: true,
+    }
+})
+
+const emit = defineEmits(['updateList', 'updateLoadedList']);
+
+const input_text= ref('')
 
 class TodoList {
     constructor(list_name, todo_list,){
@@ -43,16 +50,16 @@ class TodoList {
 
 }
 
-const createList = (input) => {
-    if (input.trim()) {
-        todo_list_list.value.push(new TodoList(input, ["Look at me I'm todo ITEM 1"]));
-    }
-}
+const handleCreateList = () => {
+  if (input_text.value.trim()) {
+    const newList = new TodoList(input_text.value, []);
+    emit('updateList', newList);
+  }
+};
 
-const editList = (input, index) => {
-    if (input.trim()) {
-        todo_list_list.value.splice(index, 1, new TodoList(input, []));
-    }
-}
+const handleLoadedList = (loaded_list) => {
+    emit('updateLoadedList', loaded_list);
+};
+
 
 </script>

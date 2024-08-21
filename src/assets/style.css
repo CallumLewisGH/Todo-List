@@ -14,10 +14,10 @@ body {
 }
 
 .container1 {
-    background-color: #3f3f3f;;
+    background-color: #494949;;
     display: flex;
     flex-direction: row;
-    min-height: 80vh;
+    min-height: 83vh;
 
 }
 
@@ -40,7 +40,7 @@ body {
 .SideBar {
     display: flex;
     flex-direction: column;
-    background-color: #3f3f3f;
+    background-color: #494949;
     color: azure;
     min-width: 17.5%;
     max-width: 17.5%;
@@ -50,8 +50,7 @@ body {
     background-color: #6b6b6b;
     color: azure;
     min-width: 82.5%;
-    border: solid red;
-    border-radius: 5vh;
+    font-size: larger;
 }
 
 .list_link {
@@ -63,5 +62,24 @@ body {
 }
 
 .list_link:hover {
-    background-color: #3b3b3b;
+    background-color: #424242;
+}
+
+.todo_list_header {
+    border-radius: 5vh;
+    padding: 2%;
+    font-size: x-large;
+}
+
+.todo_list {
+    border-radius: 5vh;
+    padding: 2%;
+    font-size: large;
+}
+
+.todo_list:hover {
+    border-radius: 5vh;
+    padding: 2%;
+    font-size: large;
+    background-color: #424242;
 }

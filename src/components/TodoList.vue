@@ -1,10 +1,24 @@
 <template>
-    <template >
-        <span>HELLO WORLD</span>
-    </template>
+    <div class="todo_list_header">
+    <span>{{props.todo_list.value.list_name}}</span>
+    </div>
+        <template v-for="items in props.todo_list.value.todo_list">
+            <div class="todo_list">
+                <li>{{items}}</li>
+            </div>
+        </template>
+
 </template>
 
 <script setup>
+import { ref, onMounted, defineProps, defineEmits } from 'vue';
+
+const props = defineProps({
+    todo_list: {
+        type: Object,
+        required: true,
+    }
+})
 
 class mainItem {
     constructor(item_input, sub_item_list,){
@@ -26,25 +40,7 @@ class mainItem {
 
 }
 
-class TodoList {
-    constructor(list_name, todo_list,){
-        this.list_name = list_name;
-        this.todo_list = todo_list;
-    }
 
-    addTodoMainItem = () => {
-        const item = new mainItem("MainItem INPUT", [])
-        this.todo_list.push(item)
-    }
-
-    getListName = () => {
-        return this.list_name;
-    }
-
-    getTodoList = () => {
-        return this.todo_list;
-    }
-
-}
+const emit = defineEmits(['updateList'])
 
 </script>
