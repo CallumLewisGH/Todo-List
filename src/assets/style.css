@@ -7,26 +7,25 @@ body {
 }
 
 .masterContainer {
+    background-color: #3f3f3f;
     font-family: Arial, Helvetica, sans-serif;
     display: flex;
     flex-direction: column;
 }
 
 .container1 {
-    background-color: #6d6d6d;
+    background-color: #3f3f3f;;
     display: flex;
     flex-direction: row;
-    min-width: 200vh;
-    min-height: 90vh;
+    min-height: 80vh;
 
 }
 
 
 .container2 {
+
     display: flex;
     flex-direction: column;
-    max-height: 13vh;
-
 }
 
 
@@ -34,38 +33,33 @@ body {
     color: azure;
     font-size: x-large;
     background-color: #3f3f3f;
-    min-height: auto;
-    font-size: xxx-large;
+    font-size: xx-large;
+    padding-bottom: 1%;
 }
-
-
 
 .SideBar {
     display: flex;
     flex-direction: column;
     background-color: #3f3f3f;
-    font-size: x-large;
-    text-align: center;
     color: azure;
+    min-width: 17.5%;
+    max-width: 17.5%;
 }
 
 .TodoList {
+    background-color: #6b6b6b;
     color: azure;
+    min-width: 82.5%;
     border: solid red;
     border-radius: 5vh;
 }
 
-.TodoList:hover {
-    background-color: #3b3b3b;
-}
-
 .list_link {
-    height: 8vh;
-    min-width: 25vh;
     border-radius: 3vh;
     text-align: left;
-    text-indent: 1vh;
     font-size: large;
+    padding: 2%;
+    text-indent: 2%;
 }
 
 .list_link:hover {

@@ -1,15 +1,15 @@
 <template>
     <template v-for="list, index in todo_list_list">
         <div @click="loaded_list = list.value" class="list_link" id="list_link">
-            <img src="../assets/TodoListMarker.png" width="35vh" style="float:left; margin-top: 1vh;">
-            <p style="margin-top: 2vh;">{{list.getListName()}}</p>
+            <img src="../assets/TodoListMarker.png" width="17.5%" style="float:left;">
+            <span>{{list.getListName()}}</span>
         </div>
     </template>
 
     <div class="list_link" id="list_link">
-        <img src="../assets/TodoListMarker.png" width="35vh" style="float:left; margin-top: 1vh;">
+        <img src="../assets/TodoListMarker.png" width="17.5%" style="float:left;">
         <input type="text" placeholder="Enter List Name..." v-model="input_text2" @keyup.enter = "input_text2 = ''" @keydown.enter="createList(input_text2)"
-        style="margin-inline: 1vh; margin-top: 0.66vh; size: large; background-color: #3f3f3f; height: 6vh; border-radius: 3vh; border: #3f3f3f;  color: azure;">
+        style="size: large; background-color: #3f3f3f;min-height: 100%; border-radius: 3vh; border: #3f3f3f;  color: azure; max-width: 75%;">
     </div>
 
 </template>
