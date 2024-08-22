@@ -44,7 +44,7 @@
 };
 
   const updateLoadedList = (inputList) => {
-    todo_list.value = inputList
+    todo_list_obj.value = inputList
   }
 
 </script>
