@@ -13,7 +13,7 @@
       </div>
 
       <div class="TodoList" id="TodoList">
-        <TodoList :todo_list="todo_list"/>
+        <TodoList :todo_list_obj="todo_list_obj"/>
       </div>
 
 
@@ -31,7 +31,7 @@
   import { ref, onMounted } from 'vue';
 
   const todo_list_list = ref([])
-  const todo_list = ref({
+  const todo_list_obj = ref({
     list_name: "Create or load a list",
     todo_list: ["Step 1 Select the text box that states Enter List Name...",
     "Step 2 Enter your desired name",

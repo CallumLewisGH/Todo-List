@@ -1,8 +1,8 @@
 <template>
     <div class="todo_list_header">
-    <span>{{props.todo_list.value.list_name}}</span>
+    <span>{{todo_list_obj.list_name}}</span>
     </div>
-        <template v-for="items in props.todo_list.value.todo_list">
+        <template v-for="items in todo_list_obj.todo_list">
             <div class="todo_list">
                 <li>{{items}}</li>
             </div>
@@ -11,10 +11,10 @@
 </template>
 
 <script setup>
-import { ref, onMounted, defineProps, defineEmits } from 'vue';
+import { ref, onMounted, defineEmits } from 'vue';
 
 const props = defineProps({
-    todo_list: {
+    todo_list_obj: {
         type: Object,
         required: true,
     }
@@ -39,7 +39,6 @@ class mainItem {
     }
 
 }
-
 
 const emit = defineEmits(['updateList'])
 

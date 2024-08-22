@@ -16,7 +16,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted, defineProps, defineEmits } from 'vue';
+import { ref, onMounted, defineEmits } from 'vue';
 
 const props = defineProps({
     todo_list_list: {
