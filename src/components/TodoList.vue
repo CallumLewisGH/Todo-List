@@ -7,7 +7,7 @@
                 <li>{{items1.item_input}}</li>
 
                 <template v-for="items2 in todo_list_obj.todo_list[index].sub_item_list">
-                    <li style="padding-left: 2%;">{{items2}}</li>
+                    <li style=" margin-left: 2%; margin-top: 1%;">{{items2}}</li>
                 </template>
 
                 <template v-if="actIndex === index">
