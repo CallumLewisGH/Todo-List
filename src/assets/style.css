@@ -73,13 +73,28 @@ body {
 
 .todo_list {
     border-radius: 5vh;
-    padding: 2%;
+    padding: 1%;
     font-size: large;
 }
 
 .todo_list:hover {
     border-radius: 5vh;
-    padding: 2%;
+    padding: 1%;
+    font-size: large;
+    background-color: #424242;
+}
+::placeholder {
+    color: #d8d8d8;
+}
+.todo_list_input {
+    border-radius: 5vh;
+    padding: 1%;
+    font-size: large;
+}
+
+.todo_list_input:hover {
+    border-radius: 5vh;
+    padding: 1%;
     font-size: large;
     background-color: #424242;
 }

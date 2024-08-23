@@ -3,7 +3,7 @@
     <template v-for="list, index in props.todo_list_list">
         <div @click="handleLoadedList(list)" class="list_link" id="list_link">
             <img src="../assets/TodoListMarker.png" width="17.5%" style="float:left; margin-right: 2%;">
-            <span>{{list.getListName()}}</span>
+            <span>{{list.list_name}}</span>
         </div>
     </template>
 
@@ -16,7 +16,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted, defineEmits } from 'vue';
+import { ref, onMounted, } from 'vue';
 
 const props = defineProps({
     todo_list_list: {
@@ -29,30 +29,9 @@ const emit = defineEmits(['updateList', 'updateLoadedList']);
 
 const input_text= ref('')
 
-class TodoList {
-    constructor(list_name, todo_list,){
-        this.list_name = list_name;
-        this.todo_list = todo_list;
-    }
-
-    addTodoMainItem = () => {
-        const item = new mainItem("MainItem INPUT", [])
-        this.todo_list.push(item)
-    }
-
-    getListName = () => {
-        return this.list_name;
-    }
-
-    getTodoList = () => {
-        return this.todo_list;
-    }
-
-}
-
 const handleCreateList = () => {
-  if (input_text.value.trim()) {
-    const newList = new TodoList(input_text.value, []);
+  if (input_text.value) {
+    const newList = {list_name: input_text.value, todo_list: []};
     emit('updateList', newList);
   }
 };
