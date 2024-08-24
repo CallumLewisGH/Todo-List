@@ -21,8 +21,6 @@
 </template>
 
 
-
-
 <script setup>
   import SideBar from "./components/SideBar.vue";
   import Header from "./components/Header.vue"
@@ -40,7 +38,6 @@
     {item_input:"Step 3 Press Enter", sub_item_list: []},
     {item_input:"Step 4 Select the newly created list on the side bar", sub_item_list: []}
     ]})
-
 
 onMounted(() => {
   const local_list = localStorage.getItem('todo_list_list');
