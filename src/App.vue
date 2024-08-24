@@ -13,7 +13,7 @@
       </div>
 
       <div class="TodoList" id="TodoList">
-        <TodoList :todo_list_obj="todo_list_obj" @updateMainItemList="updateMainItemList" @updateSubItemList="updateSubItemList"/>
+        <TodoList :todo_list_obj="todo_list_obj" @updateMainItemList="updateMainItemList" @updateSubItemList="updateSubItemList" @deleteList="deleteList" @deleteMainItem="deleteMainItem"/>
       </div>
 
     </div>
@@ -57,6 +57,14 @@ onMounted(() => {
   const deleteList = (index) => {
     todo_list_list.value.splice(index, 1)
     localStorage.setItem('todo_list_list', JSON.stringify(todo_list_list.value));
+    todo_list_obj.value = {
+
+      list_name: "Create or load a list",
+      todo_list: [{item_input:"Step 1 Select the text box that states Enter List Name...", sub_item_list: []},
+      {item_input: "Step 2 Enter your desired name", sub_item_list: []},
+      {item_input:"Step 3 Press Enter", sub_item_list: []},
+      {item_input:"Step 4 Select the newly created list on the side bar", sub_item_list: []}
+      ]}
   }
 
   const updateLoadedList = (inputList, index) => {
@@ -85,5 +93,7 @@ onMounted(() => {
     todo_list_obj.value.todo_list[index].sub_item_list.push(subItemInput)
     localStorage.setItem('todo_list_list', JSON.stringify(todo_list_list.value));
   }
-
+  const deleteMainItem = (index) => {
+    todo_list_obj.value.todo_list.splice(index, 1)
+  }
 </script>

@@ -42,14 +42,13 @@ body {
     flex-direction: column;
     background-color: #494949;
     color: azure;
-    min-width: 17.5%;
-    max-width: 17.5%;
+    min-width: 25%;
 }
 
 .TodoList {
     background-color: #6b6b6b;
     color: azure;
-    min-width: 82.5%;
+    min-width: 75%;
     font-size: larger;
 }
 
@@ -67,8 +66,15 @@ body {
 
 .todo_list_header {
     border-radius: 5vh;
-    padding: 2%;
-    font-size: x-large;
+    padding: 3%;
+    font-size: xx-large;
+    text-indent: 0%;
+}
+.todo_list_header:hover {
+    background-color: #5b5b5b;
+    border-radius: 5vh;
+    padding: 3%;
+    font-size: xx-large;
 }
 
 .todo_list {

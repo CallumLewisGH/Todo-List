@@ -1,10 +1,12 @@
 <template>
     <div class="todo_list_header">
     <span>{{todo_list_obj.list_name}}</span>
+    <img src="../assets/Cross.png" width="17.5vh" style=" float:right; margin-top: 2%; margin-right: 1%;" @click="handleDeleteList(index)">
     </div>
         <template v-for="items1,index in todo_list_obj.todo_list">
             <div class="todo_list" @mousedown="isMouseClick = true, actIndex = index">
                 <li>{{items1.item_input}}</li>
+                <img src="../assets/Cross.png" width="17.5vh" style=" float:right; margin-top: -3.5%; margin-right: 5%;" @click="handleMainItem(index)">
 
                 <template v-for="items2 in todo_list_obj.todo_list[index].sub_item_list">
                     <li style=" margin-left: 2%; margin-top: 1%;">{{items2}}</li>
@@ -34,7 +36,7 @@ const input_text2 = ref('')
 const isMouseClick = ref(false)
 const actIndex = ref(0)
 
-const emit = defineEmits(['updateMainItemList', 'updateSubItemList'])
+const emit = defineEmits(['updateMainItemList', 'updateSubItemList', 'deleteList', 'deleteMainItem'])
 
 const props = defineProps({
     todo_list_obj: {
@@ -57,6 +59,14 @@ const handleCreateSubItem = (index) => {
 
     }
 }
+const handleDeleteList = (index) => {
+    emit('deleteList', index)
+}
+
+const handleMainItem = (index) => {
+    emit('deleteMainItem', index)
+}
+
 
 
 </script>
