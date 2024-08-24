@@ -28,9 +28,10 @@
   import Header from "./components/Header.vue"
   import TodoList from "./components/TodoList.vue";
   import { onMounted, ref,} from 'vue';
+  import {useToast} from 'vue-toastification';
 
+  const toast = useToast();
   const todo_list_list = ref([])
-
   const todo_list_obj = ref({
 
     list_name: "Create or load a list",
@@ -65,6 +66,7 @@ onMounted(() => {
       {item_input:"Step 3 Press Enter", sub_item_list: []},
       {item_input:"Step 4 Select the newly created list on the side bar", sub_item_list: []}
       ]}
+    toast.success('Well Done! You completed the todo list!')
   }
 
   const updateLoadedList = (inputList, index) => {
@@ -95,5 +97,6 @@ onMounted(() => {
   }
   const deleteMainItem = (index) => {
     todo_list_obj.value.todo_list.splice(index, 1)
+    toast.success('Well Done! You Completed a task!')
   }
 </script>
