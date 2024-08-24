@@ -81,7 +81,7 @@ body {
     border-radius: 5vh;
     padding: 1%;
     font-size: large;
-    background-color: #424242;
+    background-color: #5b5b5b;
 }
 ::placeholder {
     color: #d8d8d8;
@@ -96,5 +96,5 @@ body {
     border-radius: 5vh;
     padding: 1%;
     font-size: large;
-    background-color: #424242;
+    background-color: #5b5b5b;
 }
