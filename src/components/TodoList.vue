@@ -1,7 +1,7 @@
 <template>
     <div class="todo_list_header">
     <span>{{todo_list_obj.list_name}}</span>
-    <img src="../assets/Cross.png" width="17.5vh" style=" float:right; margin-top: 2%; margin-right: 1%;" @click="handleDeleteList(index)">
+    <img src="../assets/Cross.png" width="17.5vh" style=" float:right; margin-top: 1%; margin-right: 1%;" @click="handleDeleteList(index)">
     </div>
         <template v-for="items1,index in todo_list_obj.todo_list">
             <div class="todo_list" @mousedown="isMouseClick = true, actIndex = index">
