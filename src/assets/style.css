@@ -42,7 +42,7 @@ body {
     flex-direction: column;
     background-color: #494949;
     color: azure;
-    min-width: 25%;
+    min-width: fit-content;
 }
 
 .TodoList {
@@ -54,6 +54,7 @@ body {
 
 .list_link {
     border-radius: 3vh;
+    min-width: 50%;
     text-align: left;
     font-size: large;
     padding: 2%;
