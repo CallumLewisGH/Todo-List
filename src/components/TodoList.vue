@@ -28,8 +28,8 @@
 
 </template>
 
-<script setup>
-import { ref, onMounted, } from 'vue';
+<script setup lang="ts">
+import { ref, } from 'vue';
 
 const input_text1 = ref('')
 const input_text2 = ref('')

@@ -1,6 +1,8 @@
 <template>
   <div class="masterContainer">
     <div class="container2">
+
+      <div></div>
       <div class ="header" id="Header">
         <Header></Header>
 
@@ -21,12 +23,13 @@
 </template>
 
 
-<script setup>
+<script setup lang ="ts">
   import SideBar from "./components/SideBar.vue";
   import Header from "./components/Header.vue"
   import TodoList from "./components/TodoList.vue";
   import { onMounted, ref,} from 'vue';
   import {useToast} from 'vue-toastification';
+  import { getTodos,} from '@/client'
 
   const toast = useToast();
   const todo_list_list = ref([])
@@ -39,7 +42,16 @@
     {item_input:"Step 4 Select the newly created list on the side bar", sub_item_list: []}
     ]})
 
-onMounted(() => {
+
+
+onMounted(async () => {
+  try {
+    const todos = await getTodos()
+    console.log(todos)
+  } catch (error) {
+    console.log(error)
+  }
+  
   const local_list = localStorage.getItem('todo_list_list');
 
   if (local_list) {
@@ -94,6 +106,7 @@ onMounted(() => {
   }
   const deleteMainItem = (index) => {
     todo_list_obj.value.todo_list.splice(index, 1)
+    localStorage.setItem('todo_list_list', JSON.stringify(todo_list_list.value));
     toast.success('Well Done! You Completed a task!')
   }
 </script>
