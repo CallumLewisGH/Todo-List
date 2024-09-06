@@ -1,7 +1,7 @@
 <template>
     <h3 style="text-align: center;">Saved</h3>
     <template v-for="list, index in props.todo_list_list">
-        <div @click="handleLoadedList(list , index)" class="list_link" id="list_link">
+        <div @click="handleLoadedList(list)" class="list_link" id="list_link">
             <img src="../assets/TodoListMarker.png" width="25vh%" style="float:left; margin-right: 2%;">
             <img src="../assets/Cross.png" width="17.5vh" style=" float: right; margin-top: 2%; margin-right: 3%;" @click="handleDeleteList(index)">
             <span>{{list.list_name}}</span>
@@ -16,8 +16,8 @@
 
 </template>
 
-<script setup>
-import { ref, onMounted, } from 'vue';
+<script setup lang="ts">
+import { ref, } from 'vue';
 
 const props = defineProps({
     todo_list_list: {
@@ -28,7 +28,7 @@ const props = defineProps({
 
 const emit = defineEmits(['updateList', 'updateLoadedList', 'deleteList' ]);
 
-const input_text= ref('')
+const input_text= ref<string>('')
 
 const handleCreateList = () => {
   if (input_text.value) {

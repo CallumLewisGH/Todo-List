@@ -31,10 +31,11 @@
 <script setup lang="ts">
 import { ref, } from 'vue';
 
-const input_text1 = ref('')
-const input_text2 = ref('')
-const isMouseClick = ref(false)
-const actIndex = ref(0)
+const input_text1 = ref<string>('')
+const input_text2 = ref<string>('')
+const isMouseClick = ref<boolean>(false)
+const actIndex = ref<number>()
+const index = ref<number>()
 
 const emit = defineEmits(['updateMainItemList', 'updateSubItemList', 'deleteList', 'deleteMainItem'])
 
