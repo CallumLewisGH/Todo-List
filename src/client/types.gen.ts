@@ -56,6 +56,16 @@ export type PostUserResponse = (unknown);
 
 export type PostUserError = unknown;
 
+export type GetUserByIdData = {
+    headers: {
+        id: number;
+    };
+};
+
+export type GetUserByIdResponse = (Array<UserDTO>);
+
+export type GetUserByIdError = unknown;
+
 export type PutUserByIdData = {
     body: UserDTO;
     path: {

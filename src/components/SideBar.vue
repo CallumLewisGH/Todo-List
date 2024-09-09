@@ -1,6 +1,6 @@
 <template>
     <h3 style="text-align: center;">Saved</h3>
-    <template v-for="list, index in props.todo_list_list">
+    <template v-for="list, index in todo_list_list">
         <div @click="handleLoadedList(list)" class="list_link" id="list_link">
             <img src="../assets/TodoListMarker.png" width="25vh%" style="float:left; margin-right: 2%;">
             <img src="../assets/Cross.png" width="17.5vh" style=" float: right; margin-top: 2%; margin-right: 3%;" @click="handleDeleteList(index)">
@@ -18,30 +18,34 @@
 
 <script setup lang="ts">
 import { ref, } from 'vue';
+import type { todo_list_list_type } from "@/types/todo_list_list"
+import type { todo_list_obj_type } from "@/types/todo_list_obj"
 
-const props = defineProps({
-    todo_list_list: {
-        type: Array,
-        required: true,
-    }
-})
+
+defineProps<{
+  todo_list_list: todo_list_list_type;
+}>()
+
 
 const emit = defineEmits(['updateList', 'updateLoadedList', 'deleteList' ]);
 
 const input_text= ref<string>('')
 
-const handleCreateList = () => {
-  if (input_text.value) {
-    const newList = {list_name: input_text.value, todo_list: []};
+const handleCreateList = (input_text: string) => {
+  if (input_text) {
+    const newList: todo_list_obj_type = {
+      list_name: input_text, 
+      todo_list: [],
+};
     emit('updateList', newList);
   }
 };
 
-const handleLoadedList = (index) => {
-    emit('updateLoadedList', index);
+const handleLoadedList = (list: todo_list_obj_type) => {
+    emit('updateLoadedList', list);
 };
 
-const handleDeleteList = ( index) => {
+const handleDeleteList = ( index: number) => {
     emit('deleteList', index)
 }
 
