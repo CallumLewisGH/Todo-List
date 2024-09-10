@@ -46,7 +46,7 @@ defineProps<{
 
 const handleCreateMainItem = (input_text2: string) => {
     if (input_text2) {
-    const newMainItem = {item_input: input_text2, sub_item_list: []};
+    const newMainItem = {mainItem: input_text2, subItemList: []};
     emit('updateMainItemList', newMainItem);
   }
 }

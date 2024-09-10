@@ -124,6 +124,10 @@ export const TodoListObjectSchema = {
             type: 'string',
             nullable: true
         },
+        taskId: {
+            type: 'integer',
+            format: 'int64'
+        },
         subItemList: {
             type: 'array',
             items: {
@@ -141,6 +145,10 @@ export const TodoListObjectDTOSchema = {
         listName: {
             type: 'string',
             nullable: true
+        },
+        listId: {
+            type: 'integer',
+            format: 'int64'
         },
         todoListObject: {
             type: 'array',

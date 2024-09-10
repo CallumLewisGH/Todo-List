@@ -40,11 +40,13 @@ export type TodoListDTO = {
 
 export type TodoListObject = {
     mainItem?: (string) | null;
+    taskId?: number;
     subItemList?: Array<(string)> | null;
 };
 
 export type TodoListObjectDTO = {
     listName?: (string) | null;
+    listId?: number;
     todoListObject?: Array<TodoListObject> | null;
 };
 

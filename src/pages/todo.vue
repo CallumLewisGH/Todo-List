@@ -21,62 +21,58 @@
   import TodoList from "@/components/TodoList.vue";
   import { onMounted, ref,} from 'vue';
   import {useToast} from 'vue-toastification';
-  import { UserDTO, getUserById, getById, TodoListObjectDTO, TodoListObject} from '@/client'
+  import { UserDTO, getUserById, getById, TodoListObjectDTO, TodoListObject, deleteUserTodoListById, putUserTodoListById, postUserTodoList, CreateTodoListRequestSchema} from '@/client'
 
   const toast = useToast();
-  const user = ref<UserDTO>({}); 
+  const user = ref<UserDTO>({});
   const inputList = ref<TodoListObjectDTO[]>([]);
   const usingList = ref<TodoListObjectDTO>({});
 
 onMounted(async () => {
+  const userResponse = await getUserById({headers: {id : 0}});
+  if (userResponse.data === undefined){
+    return;
+  }
+  const userRes: UserDTO = {
+    id: userResponse.data[0]?.id,
+    username: userResponse.data[0]?.username,
+    password: userResponse.data[0]?.password
+  } 
+  user.value = userRes;
+  console.log(user.value)
+  const response = await getById({path: {id: 0}});
+  if (response.data === undefined){
+    return;
+  }
   
-  try {
-    const response = await getUserById({headers: {id : 0}});
-    if (response.data === undefined){
-      return;
-    }
-    const res: UserDTO = {
-      id: response.data[0]?.id,
-      username: response.data[0]?.username,
-      password: response.data[0]?.password
+  const ListRes = response.data.map(todoList => {
+    const ListRes: TodoListObjectDTO = {
+      listName: todoList.listName,
+      todoListObject: todoList.todoListObject
     } 
-
-    user.value = res;
-    console.log(user)
-
-  } catch (error) {
-    console.log(error)
-  }
-
-  try {
-    const response = await getById({path: {id: 0}});
-    if (response.data === undefined){
-      return;
-    }
-    
-    const res = response.data.map(todoList => {
-      const res: TodoListObjectDTO = {
-        listName: todoList.listName,
-        todoListObject: todoList.todoListObject
-      } 
-
-      return res;
-    })
-
-    inputList.value = res;
-    console.log(inputList)
-
-  } catch (error) {
-    console.log(error)
-  }
+    return ListRes;
+  })
+  inputList.value = ListRes;
+  console.log(inputList.value)
 });
+
+usingList.value = {
+      listName: "Create or load a list",
+      todoListObject: [{mainItem:"Step 1 Select the text box that states Enter List Name...", subItemList: []},
+                {mainItem: "Step 2 Enter your desired name", subItemList: []},
+                {mainItem:"Step 3 Press Enter", subItemList: []},
+                {mainItem:"Step 4 Select the newly created list on the side bar", subItemList: []}
+  ]};
 
   const updateList = (newList: TodoListObjectDTO) => {
     inputList.value.push(newList);
-    localStorage.setItem('inputList', JSON.stringify(inputList.value));
+    postUserTodoList({body: {}})
+
 };
 
   const deleteList = (index: number) => {
+    if (inputList.value[index] == undefined) return;
+
     inputList.value.splice(index, 1)
     usingList.value = {
       listName: "Create or load a list",
@@ -85,9 +81,10 @@ onMounted(async () => {
                 {mainItem:"Step 3 Press Enter", subItemList: []},
                 {mainItem:"Step 4 Select the newly created list on the side bar", subItemList: []}
   ]}};
+  
 
-  const updateLoadedList = (list: TodoListObject) => {
-    usingList.value.todoListObject?.push(list)
+  const updateLoadedList = (list: TodoListObjectDTO) => {
+    usingList.value = list
   };
 
   const updateMainItemList = (mainItemInput: TodoListObject) => {
@@ -100,6 +97,7 @@ onMounted(async () => {
     if(usingList.value.todoListObject == undefined) return;
     usingList.value.todoListObject[index]?.subItemList?.push(subItemInput)
   }
+
   const deleteMainItem = (index: number) => {
     usingList.value.todoListObject?.splice(index, 1)
     toast.success('Well Done! You Completed a task!')
