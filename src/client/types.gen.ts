@@ -38,23 +38,31 @@ export type TodoListDTO = {
     listName?: (string) | null;
 };
 
+export type TodoListObject = {
+    mainItem?: (string) | null;
+    subItemList?: Array<(string)> | null;
+};
+
+export type TodoListObjectDTO = {
+    listName?: (string) | null;
+    todoListObject?: Array<TodoListObject> | null;
+};
+
 export type UserDTO = {
     id?: number;
     username?: (string) | null;
     password?: (string) | null;
 };
 
-export type GetUserResponse = (Array<UserDTO>);
-
-export type GetUserError = unknown;
-
-export type PostUserData = {
-    body: CreateUserRequest;
+export type GetByIdData = {
+    path: {
+        id: number;
+    };
 };
 
-export type PostUserResponse = (unknown);
+export type GetByIdResponse = (Array<TodoListObjectDTO>);
 
-export type PostUserError = unknown;
+export type GetByIdError = unknown;
 
 export type GetUserByIdData = {
     headers: {
@@ -86,6 +94,14 @@ export type DeleteUserByIdData = {
 export type DeleteUserByIdResponse = (unknown);
 
 export type DeleteUserByIdError = unknown;
+
+export type PostUserData = {
+    body: CreateUserRequest;
+};
+
+export type PostUserResponse = (unknown);
+
+export type PostUserError = unknown;
 
 export type GetUserTodoListData = {
     headers: {

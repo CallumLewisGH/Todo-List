@@ -5,11 +5,11 @@
 
     <div class="container1">
       <div class="SideBar" id="SideBar">
-        <SideBar :todo_list_list="todo_list_list" @updateList="updateList" @updateLoadedList="updateLoadedList" @deleteList="deleteList"/>
+        <SideBar :inputList="inputList" @updateList="updateList" @updateLoadedList="updateLoadedList" @deleteList="deleteList"/>
       </div>
 
       <div class="TodoList" id="TodoList">
-        <TodoList :todo_list_obj="todo_list_obj" @updateMainItemList="updateMainItemList" @updateSubItemList="updateSubItemList" @deleteList="deleteList" @deleteMainItem="deleteMainItem"/>
+        <TodoList :usingList="usingList" @updateMainItemList="updateMainItemList" @updateSubItemList="updateSubItemList" @deleteList="deleteList" @deleteMainItem="deleteMainItem"/>
       </div>
 
     </div>
@@ -21,115 +21,87 @@
   import TodoList from "@/components/TodoList.vue";
   import { onMounted, ref,} from 'vue';
   import {useToast} from 'vue-toastification';
-  import { UserDTO, getUserById, getUserTodoList, TodoListDTO, getUserTodoListTask, TaskDTO, getUserTodoListTaskSubtask, SubTaskDTO} from '@/client'
-  import type { todo_list_obj_type } from "@/types/todo_list_obj";
-  import type { todo_list_list_type } from "@/types/todo_list_list";
-  import type { main_item_type } from "@/types/main_item";
+  import { UserDTO, getUserById, getById, TodoListObjectDTO, TodoListObject} from '@/client'
 
   const toast = useToast();
-
-  const todo_list_list = ref<todo_list_list_type>([]); 
-
-  const todo_list_obj = ref<todo_list_obj_type>({
-
-  list_name: "Create or load a list",
-  todo_list: [{item_input:"Step 1 Select the text box that states Enter List Name...", sub_item_list: []},
-              {item_input: "Step 2 Enter your desired name", sub_item_list: []},
-              {item_input:"Step 3 Press Enter", sub_item_list: []},
-              {item_input:"Step 4 Select the newly created list on the side bar", sub_item_list: []}
-  ]});
-
-  let user = ref<UserDTO>({}); 
-  let userTodoLists = ref<TodoListDTO[]>([]);
-  let userTodoListTasks = ref<TaskDTO[]>([]);
-  let userTodoListSubTasks = ref<SubTaskDTO[]>([]);
+  const user = ref<UserDTO>({}); 
+  const inputList = ref<TodoListObjectDTO[]>([]);
+  const usingList = ref<TodoListObjectDTO>({});
 
 onMounted(async () => {
   
   try {
     const response = await getUserById({headers: {id : 0}});
-    user = response.data?? {};
+    if (response.data === undefined){
+      return;
+    }
+    const res: UserDTO = {
+      id: response.data[0]?.id,
+      username: response.data[0]?.username,
+      password: response.data[0]?.password
+    } 
+
+    user.value = res;
     console.log(user)
 
   } catch (error) {
     console.log(error)
   }
-  
+
   try {
-    const response = await getUserTodoList({headers: {userId : 0}})
-    userTodoLists = response.data?? [];
-    console.log(userTodoLists)
+    const response = await getById({path: {id: 0}});
+    if (response.data === undefined){
+      return;
+    }
+    
+    const res = response.data.map(todoList => {
+      const res: TodoListObjectDTO = {
+        listName: todoList.listName,
+        todoListObject: todoList.todoListObject
+      } 
+
+      return res;
+    })
+
+    inputList.value = res;
+    console.log(inputList)
 
   } catch (error) {
     console.log(error)
-  }
-
-  try {
-    const response = await getUserTodoListTask({headers: {todoListId : 0}})
-    userTodoListTasks = response.data?? [];
-    console.log(userTodoListTasks)
-
-  } catch (error) {
-    console.log(error)
-  }
-  
-  try {
-    const response = await getUserTodoListTaskSubtask({headers: {taskId : 0}})
-    userTodoListSubTasks = response.data?? [];
-    console.log(userTodoListSubTasks)
-
-  } catch (error) {
-    console.log(error)
-  }
-
-  
-  
-
-  
-  const local_list = localStorage.getItem('todo_list_list');
-
-  if (local_list) {
-    todo_list_list.value = JSON.parse(local_list);
   }
 });
 
-  const updateList = (newList: todo_list_obj_type) => {
-    todo_list_list.value.push(newList);
-    localStorage.setItem('todo_list_list', JSON.stringify(todo_list_list.value));
+  const updateList = (newList: TodoListObjectDTO) => {
+    inputList.value.push(newList);
+    localStorage.setItem('inputList', JSON.stringify(inputList.value));
 };
 
   const deleteList = (index: number) => {
-    todo_list_list.value.splice(index, 1)
-    localStorage.setItem('todo_list_list', JSON.stringify(todo_list_list.value));
-    todo_list_obj.value = {
+    inputList.value.splice(index, 1)
+    usingList.value = {
+      listName: "Create or load a list",
+      todoListObject: [{mainItem:"Step 1 Select the text box that states Enter List Name...", subItemList: []},
+                {mainItem: "Step 2 Enter your desired name", subItemList: []},
+                {mainItem:"Step 3 Press Enter", subItemList: []},
+                {mainItem:"Step 4 Select the newly created list on the side bar", subItemList: []}
+  ]}};
 
-      list_name: "Create or load a list",
-      todo_list: [{item_input:"Step 1 Select the text box that states Enter List Name...", sub_item_list: []},
-      {item_input: "Step 2 Enter your desired name", sub_item_list: []},
-      {item_input:"Step 3 Press Enter", sub_item_list: []},
-      {item_input:"Step 4 Select the newly created list on the side bar", sub_item_list: []}
-      ]}
-    toast.success('Well Done! You completed the todo list!')
-  }
+  const updateLoadedList = (list: TodoListObject) => {
+    usingList.value.todoListObject?.push(list)
+  };
 
-  const updateLoadedList = (list: todo_list_obj_type) => {
-    todo_list_obj.value = list
-    localStorage.setItem('todo_list_list', JSON.stringify(todo_list_list.value));
-  }
-  
-  const updateMainItemList = (mainItemInput: main_item_type) => {
-    todo_list_obj.value.todo_list.push(mainItemInput)
-    localStorage.setItem('todo_list_list', JSON.stringify(todo_list_list.value));
+  const updateMainItemList = (mainItemInput: TodoListObject) => {
+    if (usingList.value.todoListObject){
+      usingList.value.todoListObject.push(mainItemInput)
+    } 
   }
 
   const updateSubItemList = (subItemInput: string, index: number) => {
-    console.log(todo_list_obj.value.todo_list[0])
-    todo_list_obj.value.todo_list[index]?.sub_item_list.push(subItemInput ?? "");
-    localStorage.setItem('todo_list_list', JSON.stringify(todo_list_list.value));
+    if(usingList.value.todoListObject == undefined) return;
+    usingList.value.todoListObject[index]?.subItemList?.push(subItemInput)
   }
   const deleteMainItem = (index: number) => {
-    todo_list_obj.value.todo_list.splice(index, 1)
-    localStorage.setItem('todo_list_list', JSON.stringify(todo_list_list.value));
+    usingList.value.todoListObject?.splice(index, 1)
     toast.success('Well Done! You Completed a task!')
   }
 </script>

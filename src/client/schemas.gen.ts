@@ -117,6 +117,42 @@ export const TodoListDTOSchema = {
     additionalProperties: false
 } as const;
 
+export const TodoListObjectSchema = {
+    type: 'object',
+    properties: {
+        mainItem: {
+            type: 'string',
+            nullable: true
+        },
+        subItemList: {
+            type: 'array',
+            items: {
+                type: 'string'
+            },
+            nullable: true
+        }
+    },
+    additionalProperties: false
+} as const;
+
+export const TodoListObjectDTOSchema = {
+    type: 'object',
+    properties: {
+        listName: {
+            type: 'string',
+            nullable: true
+        },
+        todoListObject: {
+            type: 'array',
+            items: {
+                '$ref': '#/components/schemas/TodoListObject'
+            },
+            nullable: true
+        }
+    },
+    additionalProperties: false
+} as const;
+
 export const UserDTOSchema = {
     type: 'object',
     properties: {

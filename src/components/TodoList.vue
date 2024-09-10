@@ -1,14 +1,14 @@
 <template>
     <div class="todo_list_header">
-    <span>{{todo_list_obj.list_name}}</span>
+    <span>{{usingList.listName}}</span>
     <img src="../assets/Cross.png" width="17.5vh" style=" float:right; margin-top: 1%; margin-right: 1%;" @click="handleDeleteList(index)">
     </div>
-        <template v-for="main_item,index in todo_list_obj.todo_list">
+        <template v-for="main_item,index in usingList.todoListObject">
             <div class="todo_list" @mousedown="isMouseClick = true, clickIndex = index">
-                <li>{{main_item.item_input}}</li>
+                <li>{{main_item.mainItem}}</li>
                 <img src="../assets/Cross.png" width="17.5vh" style=" float:right; margin-top: -2%; margin-right: 5%;" @click="handleMainItem(index)">
 
-                <template v-for="sub_item in main_item.sub_item_list">
+                <template v-for="sub_item in main_item.subItemList">
                     <li style=" margin-left: 2%; margin-top: 1%;">{{sub_item}}</li>
                 </template>
 
@@ -30,7 +30,7 @@
 
 <script setup lang="ts">
 import { ref, } from 'vue';
-import type { todo_list_obj_type } from '@/types/todo_list_obj';
+import type { TodoListObjectDTO } from '@/client/';
 
 const input_text1 = ref<string>('')
 const input_text2 = ref<string>('')
@@ -41,7 +41,7 @@ const index = ref<number | 0>(0);
 const emit = defineEmits(['updateMainItemList', 'updateSubItemList', 'deleteList', 'deleteMainItem'])
 
 defineProps<{
-  todo_list_obj: todo_list_obj_type;
+  usingList: TodoListObjectDTO;
 }>();
 
 const handleCreateMainItem = (input_text2: string) => {

@@ -1,10 +1,10 @@
 <template>
     <h3 style="text-align: center;">Saved</h3>
-    <template v-for="list, index in todo_list_list">
+    <template v-for="list, index in inputList">
         <div @click="handleLoadedList(list)" class="list_link" id="list_link">
             <img src="../assets/TodoListMarker.png" width="25vh%" style="float:left; margin-right: 2%;">
             <img src="../assets/Cross.png" width="17.5vh" style=" float: right; margin-top: 2%; margin-right: 3%;" @click="handleDeleteList(index)">
-            <span>{{list.list_name}}</span>
+            <span>{{list.listName}}</span>
         </div>
     </template>
 
@@ -18,30 +18,27 @@
 
 <script setup lang="ts">
 import { ref, } from 'vue';
-import type { todo_list_list_type } from "@/types/todo_list_list"
-import type { todo_list_obj_type } from "@/types/todo_list_obj"
+import type { TodoListDTO, TodoListObjectDTO,} from '@/client'
 
 
 defineProps<{
-  todo_list_list: todo_list_list_type;
-}>()
-
-
+  inputList: TodoListDTO[]; }>()
+  
 const emit = defineEmits(['updateList', 'updateLoadedList', 'deleteList' ]);
 
 const input_text= ref<string>('')
 
 const handleCreateList = (input_text: string) => {
   if (input_text) {
-    const newList: todo_list_obj_type = {
-      list_name: input_text, 
-      todo_list: [],
+    const newList: TodoListObjectDTO = {
+      listName: input_text, 
+      todoListObject: [],
 };
     emit('updateList', newList);
   }
 };
 
-const handleLoadedList = (list: todo_list_obj_type) => {
+const handleLoadedList = (list: TodoListObjectDTO) => {
     emit('updateLoadedList', list);
 };
 
