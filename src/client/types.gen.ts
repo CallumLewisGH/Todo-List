@@ -56,10 +56,6 @@ export type UserDTO = {
     password?: (string) | null;
 };
 
-export type GetResponse = (Array<UserDTO>);
-
-export type GetError = unknown;
-
 export type GetByIdData = {
     path: {
         id: number;

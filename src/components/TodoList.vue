@@ -36,7 +36,6 @@ const input_text1 = ref<string>('')
 const input_text2 = ref<string>('')
 const isMouseClick = ref<boolean>(false)
 const clickIndex = ref<number | 0>(0); 
-const index = ref<number | 0>(0); 
 
 const emit = defineEmits(['updateMainItemList', 'updateSubItemList', 'deleteList', 'deleteMainItem'])
 
