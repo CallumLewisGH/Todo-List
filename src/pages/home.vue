@@ -1,8 +1,8 @@
 <template>
-    <login/>
+    <home/>
 </template>
 
 <script setup lang="ts">
-import login from "@/components/Login.vue";
+import home from "@/components/Home.vue";
 
 </script>
