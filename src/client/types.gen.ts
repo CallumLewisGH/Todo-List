@@ -56,6 +56,10 @@ export type UserDTO = {
     password?: (string) | null;
 };
 
+export type GetResponse = (Array<UserDTO>);
+
+export type GetError = unknown;
+
 export type GetByIdData = {
     path: {
         id: number;
@@ -65,16 +69,6 @@ export type GetByIdData = {
 export type GetByIdResponse = (Array<TodoListObjectDTO>);
 
 export type GetByIdError = unknown;
-
-export type GetUserByIdData = {
-    headers: {
-        id: number;
-    };
-};
-
-export type GetUserByIdResponse = (Array<UserDTO>);
-
-export type GetUserByIdError = unknown;
 
 export type PutUserByIdData = {
     body: UserDTO;
@@ -105,24 +99,6 @@ export type PostUserResponse = (unknown);
 
 export type PostUserError = unknown;
 
-export type GetUserTodoListData = {
-    headers: {
-        userId: number;
-    };
-};
-
-export type GetUserTodoListResponse = (Array<TodoListDTO>);
-
-export type GetUserTodoListError = unknown;
-
-export type PostUserTodoListData = {
-    body: CreateTodoListRequest;
-};
-
-export type PostUserTodoListResponse = (unknown);
-
-export type PostUserTodoListError = unknown;
-
 export type PutUserTodoListByIdData = {
     body: TodoListDTO;
     path: {
@@ -144,23 +120,13 @@ export type DeleteUserTodoListByIdResponse = (unknown);
 
 export type DeleteUserTodoListByIdError = unknown;
 
-export type GetUserTodoListTaskData = {
-    headers: {
-        todoListId: number;
-    };
+export type PostUserTodoListData = {
+    body: CreateTodoListRequest;
 };
 
-export type GetUserTodoListTaskResponse = (Array<TaskDTO>);
+export type PostUserTodoListResponse = (unknown);
 
-export type GetUserTodoListTaskError = unknown;
-
-export type PostUserTodoListTaskData = {
-    body: CreateTaskRequest;
-};
-
-export type PostUserTodoListTaskResponse = (unknown);
-
-export type PostUserTodoListTaskError = unknown;
+export type PostUserTodoListError = unknown;
 
 export type PutUserTodoListTaskByIdData = {
     body: TaskDTO;
@@ -183,23 +149,13 @@ export type DeleteUserTodoListTaskByIdResponse = (unknown);
 
 export type DeleteUserTodoListTaskByIdError = unknown;
 
-export type GetUserTodoListTaskSubtaskData = {
-    headers: {
-        taskId: number;
-    };
+export type PostUserTodoListTaskData = {
+    body: CreateTaskRequest;
 };
 
-export type GetUserTodoListTaskSubtaskResponse = (Array<SubTaskDTO>);
+export type PostUserTodoListTaskResponse = (unknown);
 
-export type GetUserTodoListTaskSubtaskError = unknown;
-
-export type PostUserTodoListTaskSubtaskData = {
-    body: CreateSubTaskRequest;
-};
-
-export type PostUserTodoListTaskSubtaskResponse = (unknown);
-
-export type PostUserTodoListTaskSubtaskError = unknown;
+export type PostUserTodoListTaskError = unknown;
 
 export type PutUserTodoListTaskSubtaskByIdData = {
     body: SubTaskDTO;
@@ -221,3 +177,11 @@ export type DeleteUserTodoListTaskSubtaskByIdData = {
 export type DeleteUserTodoListTaskSubtaskByIdResponse = (unknown);
 
 export type DeleteUserTodoListTaskSubtaskByIdError = unknown;
+
+export type PostUserTodoListTaskSubtaskData = {
+    body: CreateSubTaskRequest;
+};
+
+export type PostUserTodoListTaskSubtaskResponse = (unknown);
+
+export type PostUserTodoListTaskSubtaskError = unknown;
