@@ -3,6 +3,7 @@
     <span>{{usingList.listName}}</span>
     <img src="../assets/Cross.png" width="17.5vh" style=" float:right; margin-top: 1%; margin-right: 1%;" @click="handleDeleteList(usingList)">
     </div>
+    <template v-if = "usingList.listName != undefined">
         <template v-for="main_item,index in usingList.todoListObject">
             <div class="todo_list" @mousedown="isMouseClick = true, clickIndex = index">
                 <li>{{main_item.mainItem}}</li>
@@ -19,6 +20,7 @@
                 </template>
             </div>
         </template>
+    </template>
         <div class="todo_list_input">
             <li>
                 <input type="text" placeholder="Enter a job todo..." v-model="input_text2" @keyup.enter = "input_text2 = ''" @keydown.enter="handleCreateMainItem(input_text2, usingList)"
@@ -30,7 +32,7 @@
 
 <script setup lang="ts">
 import { ref, } from 'vue';
-import type { SubTaskDTO, TaskDTO, TodoListObject, TodoListObjectDTO } from '@/client/';
+import { type SubTaskDTO, type TaskDTO, type TodoListObject, type TodoListObjectDTO } from '@/client/';
 
 const input_text1 = ref<string>('')
 const input_text2 = ref<string>('')
@@ -39,7 +41,7 @@ const clickIndex = ref<number | 0>(0);
 
 const emit = defineEmits(['updateMainItemList', 'updateSubItemList', 'deleteList', 'deleteMainItem'])
 
-defineProps<{
+const props = defineProps<{
   usingList: TodoListObjectDTO;
 }>();
 
