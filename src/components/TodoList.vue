@@ -3,7 +3,6 @@
     <span>{{usingList.listName}}</span>
     <img src="../assets/Cross.png" width="17.5vh" style=" float:right; margin-top: 1%; margin-right: 1%;" @click="handleDeleteList(usingList)">
     </div>
-    <template v-if = "usingList.listName != undefined">
         <template v-for="main_item,index in usingList.todoListObject">
             <div class="todo_list" @mousedown="isMouseClick = true, clickIndex = index">
                 <li>{{main_item.mainItem}}</li>
@@ -13,15 +12,14 @@
                     <li style=" margin-left: 2%; margin-top: 1%;">{{sub_item}}</li>
                 </template>
 
-                <template v-if="clickIndex === index">
+                <template v-if="clickIndex === index && usingList.listName !== 'Create a Todo-List'">
                     <li style="margin-left: 2%;"><input type="text" placeholder="Enter a job todo..." v-model="input_text1" @keyup.enter = "input_text1 = ''" @keydown.enter="handleCreateSubItem(main_item, input_text1)"
                     style="size: large;margin: 0%;min-height: 4vh; background-color: #6b6b6b; border-radius: 3vh; border: #494949;  color: azure; min-width: 60%; text-indent: 1%; margin-top: 1%">
                     </li>
                 </template>
             </div>
         </template>
-    </template>
-        <div class="todo_list_input">
+        <div class="todo_list_input" v-if="usingList.listName !== 'Create a Todo-List'">
             <li>
                 <input type="text" placeholder="Enter a job todo..." v-model="input_text2" @keyup.enter = "input_text2 = ''" @keydown.enter="handleCreateMainItem(input_text2, usingList)"
                 style="size: large;margin: 0%;min-height: 4vh; background-color: #6b6b6b; border-radius: 3vh; border: #494949;  color: azure; min-width: 60%; text-indent: 1%;">
@@ -41,7 +39,7 @@ const clickIndex = ref<number | 0>(0);
 
 const emit = defineEmits(['updateMainItemList', 'updateSubItemList', 'deleteList', 'deleteMainItem'])
 
-const props = defineProps<{
+defineProps<{
   usingList: TodoListObjectDTO;
 }>();
 
