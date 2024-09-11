@@ -25,7 +25,7 @@ defineProps<{
   inputList: TodoListObjectDTO[]; 
   userId: number;
 }>()
-  
+
 const emit = defineEmits(['updateList', 'updateLoadedList', 'deleteList' ]);
 
 const input_text= ref<string>('')
