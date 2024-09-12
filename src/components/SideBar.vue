@@ -10,7 +10,7 @@
 
     <div class="list_link" id="list_link">
         <img src="../assets/TodoListMarker.png" width="25vh%" style="float:left;">
-        <input type="text" placeholder="Enter List Name..." v-model="input_text" @keyup.enter = "input_text = ''" @keydown.enter="handleCreateList(input_text, userId )"
+        <input type="text" placeholder="Enter List Name..." v-model="input_text" @keyup.enter = "input_text = ''" @keydown.enter="handleCreateList(input_text, userId?? 0 )"
         style="size: large; background-color: #494949;min-height: 100%; border-radius: 3vh; border: #494949;  color: azure; max-width: 75%; text-indent: 1%;">
     </div>
 
@@ -23,7 +23,7 @@ import { type TodoListDTO, type TodoListObjectDTO} from '@/client'
 
 defineProps<{
   inputList: TodoListObjectDTO[]; 
-  userId: number;
+  userId?: number;
 }>()
 
 const emit = defineEmits(['updateList', 'updateLoadedList', 'deleteList' ]);

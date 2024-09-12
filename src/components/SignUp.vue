@@ -63,25 +63,59 @@ button:hover {
 </style>
 
 <template>
-    <body>
-        <div id="app" class="login-container">
-        <h2>Signup</h2>
-        <input type="text" placeholder="Enter a Username..." v-model="usernameInput" style="min-width: 100%;">
-        <input type="password" placeholder="Enter a Password..." v-model="passwordInput" style="min-width: 100%;">
-        <div class="button-container">
-            <button @click="usernameInput = '', passwordInput = '' ">Clear</button>
-            <button @click="">Submit</button>
-        </div>
-        </div>
-    </body>
+  <body>
+      <div id="app" class="login-container">
+      <h2>Signup</h2>
+      <input type="text" placeholder="Enter a Username..." v-model="usernameInput" style="min-width: 100%;">
+      <input type="password" placeholder="Enter a Password..." v-model="passwordInput" style="min-width: 100%;">
+      <div class="button-container">
+          <button @click="usernameInput = '', passwordInput = '' ">Clear</button>
+          <button @click="handleUserCreateCheck(usernameInput, passwordInput)">Submit</button>
+      </div>
+      </div>
+  </body>
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue"
+import { ref, } from "vue"
+import { UserDTO } from "@/client";
+import { useToast } from "vue-toastification";
+import "vue-toastification/dist/index.css";
+import router from "@/router";
+import { postUser } from "@/client";
+import { checkUsernameInfo } from "@/client/createUserByInput";
 
-const emit = defineEmits()
+const user = ref<UserDTO>();
+const usernameInput = ref<string>();
+const passwordInput = ref<string>();
+const toast = useToast();
 
-const usernameInput = ref<string>("");
-const passwordInput = ref<string>("");
 
-</script>
+async function handleUserCreateCheck(usernameInput?: string, passwordInput?: string){
+  user.value = await checkUsernameInfo( usernameInput )
+  if (user.value == undefined) {
+    //Not Found
+    postUser({body: {
+      username: usernameInput,
+      password: passwordInput
+    }})
+    
+    toast.success("New User Created!")
+    
+    router.push("login")
+
+    
+
+
+    
+  }
+
+  else{
+    //Found
+    toast.error("Username already in use!")
+  }
+
+  }
+
+  </script>
+

@@ -5,7 +5,7 @@
 
     <div class="container1">
       <div class="SideBar" id="SideBar">
-        <SideBar :inputList="inputList" :userId.value="userId" @updateList="updateList" @updateLoadedList="updateLoadedList" @deleteList="deleteList"/>
+        <SideBar :inputList="inputList" :userId="userId" @updateList="updateList" @updateLoadedList="updateLoadedList" @deleteList="deleteList"/>
       </div>
 
       <div class="TodoList" id="TodoList">
@@ -19,15 +19,15 @@
 <script setup lang ="ts">
   import SideBar from "@/components/SideBar.vue";
   import TodoList from "@/components/TodoList.vue";
-  import { onMounted, ref,} from 'vue';
+  import { onMounted, ref} from 'vue';
   import {useToast} from 'vue-toastification';
   import { postUserTodoListTask, deleteUserTodoListTaskById, TodoListObjectDTO, deleteUserTodoListById, postUserTodoList, TodoListDTO, TaskDTO, postUserTodoListTaskSubtask, SubTaskDTO} from '@/client'
   import { readDataById } from "@/client/getData";
-  import { inject } from "vue";
+  import { useUserStore } from "@/store";
 
-
+  const userStore = useUserStore();
+  const userId = ref<number>()
   const toast = useToast();
-  const userId = ref<number>(inject('ID')?? 0);
   const inputList = ref<TodoListObjectDTO[]>([]);
   const usingList = ref<TodoListObjectDTO>({});
   const defaultList = ref<TodoListObjectDTO>({listName: "Create a Todo-List", 
@@ -35,16 +35,18 @@
                                                [{mainItem: "Click a On the Input box that states Enter List Name..."}, 
                                                 {mainItem: "Enter the list name you want"}, 
                                                 {mainItem: "Press Enter"}]})
+  userId.value = userStore.userID
 
 onMounted(async () => {
-  inputList.value = await readDataById(userId.value)?? []
+  userId.value = userStore.userID
+  inputList.value = await readDataById(userId.value?? 0)?? []
   usingList.value = inputList.value[usingList.value.listId?? 0]?? defaultList.value
 });
 
 
   const updateList = async(newList: TodoListDTO) => {
     await postUserTodoList({body: newList })
-    inputList.value = await readDataById(userId.value)?? [defaultList.value]
+    inputList.value = await readDataById(userId.value?? 0)?? [defaultList.value]
     usingList.value = inputList.value[usingList.value.listId?? 0]?? defaultList.value
 
 
@@ -52,7 +54,7 @@ onMounted(async () => {
 
   const deleteList = async(inputId: number) => {
     await deleteUserTodoListById({ path: {id: inputId} })
-    inputList.value = await readDataById(userId.value)?? [defaultList.value]
+    inputList.value = await readDataById(userId.value?? 0)?? [defaultList.value]
     usingList.value = inputList.value[0]?? defaultList.value
     toast.success('Well Done! You Completed a List!')
 };
@@ -64,21 +66,21 @@ onMounted(async () => {
 
   const updateMainItemList = async(mainItemInput: TaskDTO ) => {
     await postUserTodoListTask({body: mainItemInput})
-    inputList.value = await readDataById(userId.value)?? [defaultList.value]
+    inputList.value = await readDataById(userId.value?? 0)?? [defaultList.value]
     usingList.value = inputList.value[usingList.value.listId?? 0]?? defaultList.value
     
   }
 
   const updateSubItemList = async(inputSubTask: SubTaskDTO) => {
     await postUserTodoListTaskSubtask({body: inputSubTask})
-    inputList.value = await readDataById(userId.value)?? [defaultList.value]
+    inputList.value = await readDataById(userId.value?? 0)?? [defaultList.value]
     usingList.value = inputList.value[usingList.value.listId?? 0]?? defaultList.value
     
   }
 
   const deleteMainItem = async(inputId: number) => {
     await deleteUserTodoListTaskById({path: {id: inputId}})
-    inputList.value = await readDataById(userId.value)?? [defaultList.value]
+    inputList.value = await readDataById(userId.value?? 0)?? [defaultList.value]
     usingList.value = inputList.value[usingList.value.listId?? 0]?? defaultList.value
     
     toast.success('Well Done! You Completed a task!')

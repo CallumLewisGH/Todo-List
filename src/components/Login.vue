@@ -76,14 +76,18 @@ button:hover {
     </body>
 </template>
 
+
+
 <script setup lang="ts">
-import { ref, provide } from "vue"
+import { ref } from "vue"
 import { UserDTO } from "@/client";
 import { checkUserInfo } from "@/client/getUserByInput";
 import { useToast } from "vue-toastification";
 import "vue-toastification/dist/index.css";
 import router from "@/router";
+import { useUserStore } from "@/store";
 
+const userStore = useUserStore();
 const user = ref<UserDTO>();
 const usernameInput = ref<string>();
 const passwordInput = ref<string>();
@@ -93,13 +97,13 @@ async function handleUserCheck(usernameInput?: string, passwordInput?: string){
   user.value = await checkUserInfo( usernameInput, passwordInput )
   if (user.value == undefined) {
     toast.error("Username and Password not found!")
-    return;
+    
   }
 
   else{
     toast.success("Username and Password Recognised!")
+    userStore.setUserID(user.value.id?? 0)
     router.push("todo")
-    provide('ID', user.value.id)
   }
 
 }
