@@ -65,12 +65,12 @@ button:hover {
 <template>
     <body>
         <div id="app" class="login-container">
-        <h2>Signin</h2>
+        <h2>Signup</h2>
         <input type="text" placeholder="Enter a Username..." v-model="usernameInput" style="min-width: 100%;">
         <input type="password" placeholder="Enter a Password..." v-model="passwordInput" style="min-width: 100%;">
         <div class="button-container">
-            <button>Clear</button>
-            <button>Submit</button>
+            <button @click="usernameInput = '', passwordInput = '' ">Clear</button>
+            <button @click="">Submit</button>
         </div>
         </div>
     </body>
@@ -79,6 +79,9 @@ button:hover {
 <script setup lang="ts">
 import { ref } from "vue"
 
+const emit = defineEmits()
+
 const usernameInput = ref<string>("");
 const passwordInput = ref<string>("");
+
 </script>

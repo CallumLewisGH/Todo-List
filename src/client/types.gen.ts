@@ -56,6 +56,17 @@ export type UserDTO = {
     password?: (string) | null;
 };
 
+export type GetUserInputData = {
+    query: {
+        Password: string;
+        Username: string;
+    };
+};
+
+export type GetUserInputResponse = (unknown);
+
+export type GetUserInputError = unknown;
+
 export type GetUserByIdData = {
     path: {
         id: number;
@@ -87,15 +98,15 @@ export type DeleteUserByIdResponse = (unknown);
 
 export type DeleteUserByIdError = unknown;
 
-export type GetByIdData = {
+export type GetUserDataByIdData = {
     path: {
         id: number;
     };
 };
 
-export type GetByIdResponse = (Array<TodoListObjectDTO>);
+export type GetUserDataByIdResponse = (Array<TodoListObjectDTO>);
 
-export type GetByIdError = unknown;
+export type GetUserDataByIdError = unknown;
 
 export type PostUserData = {
     body: CreateUserRequest;

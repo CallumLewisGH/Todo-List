@@ -21,13 +21,13 @@
   import TodoList from "@/components/TodoList.vue";
   import { onMounted, ref,} from 'vue';
   import {useToast} from 'vue-toastification';
-  import { postUserTodoListTask, deleteUserTodoListTaskById, UserDTO, TodoListObjectDTO, deleteUserTodoListById, postUserTodoList, TodoListDTO, TaskDTO, postUserTodoListTaskSubtask, SubTaskDTO} from '@/client'
+  import { postUserTodoListTask, deleteUserTodoListTaskById, TodoListObjectDTO, deleteUserTodoListById, postUserTodoList, TodoListDTO, TaskDTO, postUserTodoListTaskSubtask, SubTaskDTO} from '@/client'
   import { readDataById } from "@/client/getData";
-  import { readUserDataById } from "@/client/getUserData";
+  import { inject } from "vue";
+
 
   const toast = useToast();
-  const userId = ref<number>(0);
-  const user = ref<UserDTO>({});
+  const userId = ref<number>(inject('ID')?? 0);
   const inputList = ref<TodoListObjectDTO[]>([]);
   const usingList = ref<TodoListObjectDTO>({});
   const defaultList = ref<TodoListObjectDTO>({listName: "Create a Todo-List", 
@@ -39,7 +39,6 @@
 onMounted(async () => {
   inputList.value = await readDataById(userId.value)?? []
   usingList.value = inputList.value[usingList.value.listId?? 0]?? defaultList.value
-  user.value = await readUserDataById(userId.value)?? {}
 });
 
 

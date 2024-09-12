@@ -1,7 +1,7 @@
-import { getById, TodoListObjectDTO } from "@/client";
+import { getUserDataById, TodoListObjectDTO } from "@/client";
 
 export async function readDataById(inputId: number) {
-    const response = await getById({path: {id: inputId}});
+    const response = await getUserDataById({path: {id: inputId}});
     if (response.data === undefined){
         return;
     }

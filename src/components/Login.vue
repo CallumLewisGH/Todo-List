@@ -69,16 +69,40 @@ button:hover {
         <input type="text" placeholder="Enter a Username..." v-model="usernameInput" style="min-width: 100%;">
         <input type="password" placeholder="Enter a Password..." v-model="passwordInput" style="min-width: 100%;">
         <div class="button-container">
-            <button>Clear</button>
-            <button>Submit</button>
+            <button @click="usernameInput = '', passwordInput = '' ">Clear</button>
+            <button @click="handleUserCheck(usernameInput, passwordInput)">Submit</button>
         </div>
         </div>
     </body>
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue"
+import { ref, provide } from "vue"
+import { UserDTO } from "@/client";
+import { checkUserInfo } from "@/client/getUserByInput";
+import { useToast } from "vue-toastification";
+import "vue-toastification/dist/index.css";
+import router from "@/router";
 
-const usernameInput = ref<string>("");
-const passwordInput = ref<string>("");
+const user = ref<UserDTO>();
+const usernameInput = ref<string>();
+const passwordInput = ref<string>();
+const toast = useToast();
+
+async function handleUserCheck(usernameInput?: string, passwordInput?: string){
+  user.value = await checkUserInfo( usernameInput, passwordInput )
+  if (user.value == undefined) {
+    toast.error("Username and Password not found!")
+    return;
+  }
+
+  else{
+    toast.success("Username and Password Recognised!")
+    router.push("todo")
+    provide('ID', user.value.id)
+  }
+
+}
+
 </script>
+

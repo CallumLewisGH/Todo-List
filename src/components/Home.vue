@@ -58,8 +58,14 @@ button:hover {
         <div id="app" class="home-container">
             <h1>Welcome!</h1>
             <div class="button-container">
+              <RouterLink :to="{name: 'login'}">
                 <button @click="">Log In</button>
+              </RouterLink>
+
+              <RouterLink :to="{name: 'signup'}">
                 <button @click="">Sign Up</button>
+              </RouterLink>
+
             </div>
         </div>
     </body>
