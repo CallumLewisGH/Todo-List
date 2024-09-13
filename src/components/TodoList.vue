@@ -1,12 +1,17 @@
 <template>
     <div class="todo_list_header">
     <span>{{usingList.listName}}</span>
-    <img src="../assets/Cross.png" width="17.5vh" style=" float:right; margin-top: 1%; margin-right: 1%;" @click="handleDeleteList(usingList)">
+    <div v-if="usingList.listName !== 'Create a Todo-List'">
+        <img src="../assets/Cross.png" width="17.5vh" style=" float:right; margin-top: 1%; margin-right: 1%;" @click="handleDeleteList(usingList)">
+    </div>
     </div>
         <template v-for="main_item,index in usingList.todoListObject">
             <div class="todo_list" @mousedown="isMouseClick = true, clickIndex = index">
                 <li>{{main_item.mainItem}}</li>
-                <img src="../assets/Cross.png" width="17.5vh" style=" float:right; margin-top: -2%; margin-right: 5%;" @click="handleMainItem(main_item)">
+
+                <div v-if="usingList.listName !== 'Create a Todo-List'">
+                    <img src="../assets/Cross.png" width="17.5vh" style=" float:right; margin-top: -2%; margin-right: 5%;" @click="handleMainItem(main_item)">
+                </div>
 
                 <template v-for="sub_item in main_item.subItemList">
                     <li style=" margin-left: 2%; margin-top: 1%;">{{sub_item}}</li>

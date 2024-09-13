@@ -453,11 +453,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\callu\\Desktop\\Coding\\TodoList\\TodoWebAPI\\TodoWebAPI.csproj",
+      "projectUniqueName": "C:\\Users\\callu\\Desktop\\Coding\\Todo-List\\VisualStudio C# backend\\TodoWebAPI\\TodoWebAPI.csproj",
       "projectName": "TodoWebAPI",
-      "projectPath": "C:\\Users\\callu\\Desktop\\Coding\\TodoList\\TodoWebAPI\\TodoWebAPI.csproj",
+      "projectPath": "C:\\Users\\callu\\Desktop\\Coding\\Todo-List\\VisualStudio C# backend\\TodoWebAPI\\TodoWebAPI.csproj",
       "packagesPath": "C:\\Users\\callu\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\callu\\Desktop\\Coding\\TodoList\\TodoWebAPI\\obj\\",
+      "outputPath": "C:\\Users\\callu\\Desktop\\Coding\\Todo-List\\VisualStudio C# backend\\TodoWebAPI\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -524,5 +524,19 @@
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.400/PortableRuntimeIdentifierGraph.json"
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "NU1900",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Error occurred while getting package vulnerability data: Unable to load the service index for source https://api.nuget.org/v3/index.json."
+    },
+    {
+      "code": "NU1900",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Error occurred while getting package vulnerability data: Unable to load the service index for source https://proget.promtek.com:8443/nuget/promtek-nugets-internal/v3/index.json."
+    }
+  ]
 }

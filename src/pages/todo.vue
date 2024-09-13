@@ -24,6 +24,7 @@
   import { postUserTodoListTask, deleteUserTodoListTaskById, TodoListObjectDTO, deleteUserTodoListById, postUserTodoList, TodoListDTO, TaskDTO, postUserTodoListTaskSubtask, SubTaskDTO} from '@/client'
   import { readDataById } from "@/client/getData";
   import { useUserStore } from "@/store";
+  import router from "@/router";
 
   const userStore = useUserStore();
   const userId = ref<number>()
@@ -39,15 +40,19 @@
 
 onMounted(async () => {
   userId.value = userStore.userID
-  inputList.value = await readDataById(userId.value?? 0)?? []
+  if(userId.value != undefined){
+  inputList.value = await readDataById(userId.value)?? []
+  }
+  else {
+    router.push("/login")
+  }
   usingList.value = inputList.value[usingList.value.listId?? 0]?? defaultList.value
 });
-
 
   const updateList = async(newList: TodoListDTO) => {
     await postUserTodoList({body: newList })
     inputList.value = await readDataById(userId.value?? 0)?? [defaultList.value]
-    usingList.value = inputList.value[usingList.value.listId?? 0]?? defaultList.value
+    usingList.value = inputList.value.find(x => x.listName == newList.listName) ?? defaultList.value
 
 
 };
