@@ -26,6 +26,7 @@
   import { useUserStore } from "@/store";
   import router from "@/router";
 
+  const usingIndex = ref<number>();
   const userStore = useUserStore();
   const userId = ref<number>()
   const toast = useToast();
@@ -67,26 +68,27 @@ onMounted(async () => {
 
   const updateLoadedList = (list: TodoListObjectDTO) => {
     usingList.value = list
+    usingIndex.value = inputList.value.findIndex(x => x == list)
   };
 
   const updateMainItemList = async(mainItemInput: TaskDTO ) => {
     await postUserTodoListTask({body: mainItemInput})
     inputList.value = await readDataById(userId.value?? 0)?? [defaultList.value]
-    usingList.value = inputList.value[usingList.value.listId?? 0]?? defaultList.value
+    usingList.value = inputList.value[usingIndex.value?? 0]?? defaultList.value
     
   }
 
   const updateSubItemList = async(inputSubTask: SubTaskDTO) => {
     await postUserTodoListTaskSubtask({body: inputSubTask})
     inputList.value = await readDataById(userId.value?? 0)?? [defaultList.value]
-    usingList.value = inputList.value[usingList.value.listId?? 0]?? defaultList.value
+    usingList.value = inputList.value[usingIndex.value?? 0]?? defaultList.value
     
   }
 
   const deleteMainItem = async(inputId: number) => {
     await deleteUserTodoListTaskById({path: {id: inputId}})
     inputList.value = await readDataById(userId.value?? 0)?? [defaultList.value]
-    usingList.value = inputList.value[usingList.value.listId?? 0]?? defaultList.value
+    usingList.value = inputList.value[usingIndex.value?? 0]?? defaultList.value
     
     toast.success('Well Done! You Completed a task!')
   }
