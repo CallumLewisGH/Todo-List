@@ -21,7 +21,7 @@
   import TodoList from "@/components/TodoList.vue";
   import { onMounted, ref} from 'vue';
   import {useToast} from 'vue-toastification';
-  import { postUserTodoListTask, deleteUserTodoListTaskById, TodoListObjectDTO, deleteUserTodoListById, postUserTodoList, TodoListDTO, TaskDTO, postUserTodoListTaskSubtask, SubTaskDTO} from '@/client'
+  import { postUserTodoListTask, deleteUserTodoListTaskById, TodoListObjectDTO, deleteUserTodoListById, postUserTodoList, CreateTodoListRequest, CreateTaskRequest, postUserTodoListTaskSubtask, CreateSubTaskRequest} from '@/client'
   import { readDataById } from "@/client/getData";
   import { useUserStore } from "@/store";
   import router from "@/router";
@@ -50,7 +50,7 @@ onMounted(async () => {
   usingList.value = inputList.value[usingList.value.listId?? 0]?? defaultList.value
 });
 
-  const updateList = async(newList: TodoListDTO) => {
+  const updateList = async(newList: CreateTodoListRequest) => {
     await postUserTodoList({body: newList })
     inputList.value = await readDataById(userId.value?? 0)?? [defaultList.value]
     usingList.value = inputList.value.find(x => x.listName == newList.listName) ?? defaultList.value
@@ -71,14 +71,14 @@ onMounted(async () => {
     usingIndex.value = inputList.value.findIndex(x => x == list)
   };
 
-  const updateMainItemList = async(mainItemInput: TaskDTO ) => {
+  const updateMainItemList = async(mainItemInput: CreateTaskRequest ) => {
     await postUserTodoListTask({body: mainItemInput})
     inputList.value = await readDataById(userId.value?? 0)?? [defaultList.value]
     usingList.value = inputList.value[usingIndex.value?? 0]?? defaultList.value
     
   }
 
-  const updateSubItemList = async(inputSubTask: SubTaskDTO) => {
+  const updateSubItemList = async(inputSubTask: CreateSubTaskRequest) => {
     await postUserTodoListTaskSubtask({body: inputSubTask})
     inputList.value = await readDataById(userId.value?? 0)?? [defaultList.value]
     usingList.value = inputList.value[usingIndex.value?? 0]?? defaultList.value

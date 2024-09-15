@@ -18,7 +18,7 @@
 
 <script setup lang="ts">
 import { ref, } from 'vue';
-import { type TodoListDTO, type TodoListObjectDTO} from '@/client'
+import { type CreateTodoListRequest, type TodoListObjectDTO} from '@/client'
 
 
 defineProps<{
@@ -32,7 +32,7 @@ const input_text= ref<string>('')
 
 const handleCreateList = (input_text: string, inputUserId: number) => {
   if (input_text) {
-    const newList: TodoListDTO = {
+    const newList: CreateTodoListRequest = {
       listName: input_text, 
       userId: inputUserId,
 };

@@ -5,7 +5,7 @@ export const CreateSubTaskRequestSchema = {
     properties: {
         taskId: {
             type: 'integer',
-            format: 'int64'
+            format: 'int32'
         },
         subTaskName: {
             type: 'string',
@@ -20,7 +20,7 @@ export const CreateTaskRequestSchema = {
     properties: {
         todoListId: {
             type: 'integer',
-            format: 'int64'
+            format: 'int32'
         },
         taskName: {
             type: 'string',
@@ -35,7 +35,7 @@ export const CreateTodoListRequestSchema = {
     properties: {
         userId: {
             type: 'integer',
-            format: 'int64'
+            format: 'int32'
         },
         listName: {
             type: 'string',
@@ -53,63 +53,6 @@ export const CreateUserRequestSchema = {
             nullable: true
         },
         password: {
-            type: 'string',
-            nullable: true
-        }
-    },
-    additionalProperties: false
-} as const;
-
-export const SubTaskDTOSchema = {
-    type: 'object',
-    properties: {
-        id: {
-            type: 'integer',
-            format: 'int64'
-        },
-        taskId: {
-            type: 'integer',
-            format: 'int64'
-        },
-        subTaskName: {
-            type: 'string',
-            nullable: true
-        }
-    },
-    additionalProperties: false
-} as const;
-
-export const TaskDTOSchema = {
-    type: 'object',
-    properties: {
-        id: {
-            type: 'integer',
-            format: 'int64'
-        },
-        todoListId: {
-            type: 'integer',
-            format: 'int64'
-        },
-        taskName: {
-            type: 'string',
-            nullable: true
-        }
-    },
-    additionalProperties: false
-} as const;
-
-export const TodoListDTOSchema = {
-    type: 'object',
-    properties: {
-        id: {
-            type: 'integer',
-            format: 'int64'
-        },
-        userId: {
-            type: 'integer',
-            format: 'int64'
-        },
-        listName: {
             type: 'string',
             nullable: true
         }
@@ -155,25 +98,6 @@ export const TodoListObjectDTOSchema = {
             items: {
                 '$ref': '#/components/schemas/TodoListObject'
             },
-            nullable: true
-        }
-    },
-    additionalProperties: false
-} as const;
-
-export const UserDTOSchema = {
-    type: 'object',
-    properties: {
-        id: {
-            type: 'integer',
-            format: 'int64'
-        },
-        username: {
-            type: 'string',
-            nullable: true
-        },
-        password: {
-            type: 'string',
             nullable: true
         }
     },

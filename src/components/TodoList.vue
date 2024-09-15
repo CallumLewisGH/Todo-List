@@ -35,7 +35,7 @@
 
 <script setup lang="ts">
 import { ref, } from 'vue';
-import { type SubTaskDTO, type TaskDTO, type TodoListObject, type TodoListObjectDTO } from '@/client/';
+import { type CreateSubTaskRequest, type CreateTaskRequest, type TodoListObject, type TodoListObjectDTO } from '@/client/';
 
 const input_text1 = ref<string>('')
 const input_text2 = ref<string>('')
@@ -50,7 +50,7 @@ defineProps<{
 
 const handleCreateMainItem = (input_text2: string, usingList: TodoListObjectDTO) => {
     if (input_text2) {
-        const newMainItem : TaskDTO = {
+        const newMainItem : CreateTaskRequest = {
             todoListId: usingList.listId,
             taskName: input_text2};
 
@@ -60,7 +60,7 @@ const handleCreateMainItem = (input_text2: string, usingList: TodoListObjectDTO)
 
 const handleCreateSubItem = (inputItem: TodoListObject, input_text1: string) => {
     if (input_text1) {
-        const newSubItem : SubTaskDTO = {
+        const newSubItem : CreateSubTaskRequest = {
             taskId: inputItem.taskId,
             subTaskName: input_text1
         }
