@@ -63,6 +63,7 @@ body {
 
 .list_link:hover {
     background-color: #424242;
+    filter: drop-shadow(1px 4px 2px #2e2e2e);
 }
 
 .todo_list_header {
