@@ -41,7 +41,8 @@
 
 onMounted(async () => {
   userId.value = userStore.userID
-  userId.value = JSON.parse(localStorage.getItem('UserId') || '')
+  userId.value = JSON.parse(localStorage.getItem('UserId') || 'null')
+
 
   if(userId.value != undefined){
   inputList.value = await readDataById(userId.value)?? []
