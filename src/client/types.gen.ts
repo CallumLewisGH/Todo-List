@@ -9,7 +9,11 @@ export type CreateTaskRequest = {
     todoListId?: number;
     taskName?: (string) | null;
 };
-
+export type UserDTO = {
+    id?: number;
+    username?: (string) | null;
+    password?: (string) | null;
+};
 export type CreateTodoListRequest = {
     userId?: number;
     listName?: (string) | null;

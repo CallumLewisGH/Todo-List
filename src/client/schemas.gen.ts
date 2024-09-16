@@ -103,3 +103,22 @@ export const TodoListObjectDTOSchema = {
     },
     additionalProperties: false
 } as const;
+
+export const UserDTOSchema = {
+    type: 'object',
+    properties: {
+        id: {
+            type: 'integer',
+            format: 'int64'
+        },
+        username: {
+            type: 'string',
+            nullable: true
+        },
+        password: {
+            type: 'string',
+            nullable: true
+        }
+    },
+    additionalProperties: false
+} as const;
