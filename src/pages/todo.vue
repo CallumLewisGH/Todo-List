@@ -41,9 +41,12 @@
 
 onMounted(async () => {
   userId.value = userStore.userID
+  userId.value = JSON.parse(localStorage.getItem('UserId') || '')
+
   if(userId.value != undefined){
   inputList.value = await readDataById(userId.value)?? []
   }
+  
   else {
     router.push("/login")
   }
