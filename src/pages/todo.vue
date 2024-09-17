@@ -41,7 +41,10 @@
 
 onMounted(async () => {
   userId.value = userStore.userID
-  userId.value = JSON.parse(localStorage.getItem('UserId') || 'null')
+
+  if (userId.value == undefined){
+    userId.value = JSON.parse(localStorage.getItem('UserId') || 'null')
+  }
 
 
   if(userId.value != undefined){
@@ -58,7 +61,6 @@ onMounted(async () => {
     await postUserTodoList({body: newList })
     inputList.value = await readDataById(userId.value?? 0)?? [defaultList.value]
     usingList.value = inputList.value.find(x => x.listName == newList.listName) ?? defaultList.value
-
 
 };
 
