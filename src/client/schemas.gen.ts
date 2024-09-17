@@ -60,6 +60,77 @@ export const CreateUserRequestSchema = {
     additionalProperties: false
 } as const;
 
+export const SubTaskDTOSchema = {
+    type: 'object',
+    properties: {
+        id: {
+            type: 'integer',
+            format: 'int32'
+        },
+        subTaskName: {
+            type: 'string',
+            nullable: true
+        },
+        taskId: {
+            type: 'integer',
+            format: 'int32'
+        }
+    },
+    additionalProperties: false
+} as const;
+
+export const TaskDTOSchema = {
+    type: 'object',
+    properties: {
+        id: {
+            type: 'integer',
+            format: 'int32'
+        },
+        taskName: {
+            type: 'string',
+            nullable: true
+        },
+        todoListId: {
+            type: 'integer',
+            format: 'int32'
+        },
+        subTasks: {
+            type: 'array',
+            items: {
+                '$ref': '#/components/schemas/SubTaskDTO'
+            },
+            nullable: true
+        }
+    },
+    additionalProperties: false
+} as const;
+
+export const TodoListDTOSchema = {
+    type: 'object',
+    properties: {
+        id: {
+            type: 'integer',
+            format: 'int32'
+        },
+        listName: {
+            type: 'string',
+            nullable: true
+        },
+        userId: {
+            type: 'integer',
+            format: 'int32'
+        },
+        tasks: {
+            type: 'array',
+            items: {
+                '$ref': '#/components/schemas/TaskDTO'
+            },
+            nullable: true
+        }
+    },
+    additionalProperties: false
+} as const;
+
 export const TodoListObjectSchema = {
     type: 'object',
     properties: {
@@ -109,14 +180,25 @@ export const UserDTOSchema = {
     properties: {
         id: {
             type: 'integer',
-            format: 'int64'
+            format: 'int32'
+        },
+        salt: {
+            type: 'string',
+            nullable: true
         },
         username: {
             type: 'string',
             nullable: true
         },
-        password: {
+        hashedPassword: {
             type: 'string',
+            nullable: true
+        },
+        todoLists: {
+            type: 'array',
+            items: {
+                '$ref': '#/components/schemas/TodoListDTO'
+            },
             nullable: true
         }
     },
