@@ -95,10 +95,11 @@ const userStore = useUserStore();
 
 
 async function handleUserCreateCheck(usernameInput?: string, passwordInput?: string){
-  user.value = await checkUsernameInfo( usernameInput )
+  user.value = await checkUsernameInfo(usernameInput)
+
   if (user.value == undefined) {
     //Not Found
-    postUser({body: {
+    await postUser({body: {
       username: usernameInput,
       password: passwordInput
     }})

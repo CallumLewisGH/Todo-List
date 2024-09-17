@@ -71,15 +71,15 @@ export type GetUserInputResponse = (unknown);
 
 export type GetUserInputError = unknown;
 
-export type GetUserInputUsernameData = {
+export type GetUserUsernameData = {
     query: {
         Username: string;
     };
 };
 
-export type GetUserInputUsernameResponse = (unknown);
+export type GetUserUsernameResponse = (unknown);
 
-export type GetUserInputUsernameError = unknown;
+export type GetUserUsernameError = unknown;
 
 export type GetUserByIdData = {
     path: {
