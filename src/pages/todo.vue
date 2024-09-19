@@ -63,6 +63,7 @@ onMounted(async () => {
     await postUserTodoList({body: newList })
     inputList.value = await readDataById(userId.value?? 0)?? [defaultList.value]
     usingList.value = inputList.value.find(x => x.listName == newList.listName) ?? defaultList.value
+    usingIndex.value = inputList.value.findIndex(x => x.listName == newList.listName)
 
 };
 

@@ -35,7 +35,7 @@
 
 <script setup lang="ts">
 import { ref, } from 'vue';
-import { type CreateSubTaskRequest, type CreateTaskRequest, type TodoListObject, type TodoListObjectDTO } from '@/client/';
+import { type CreateSubTaskRequest, type CreateTaskRequest, type TodoListObject, type TodoListObjectDTO } from '../client';
 
 const input_text1 = ref<string>('')
 const input_text2 = ref<string>('')

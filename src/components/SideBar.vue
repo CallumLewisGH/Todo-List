@@ -18,7 +18,7 @@
 
 <script setup lang="ts">
 import { ref, } from 'vue';
-import { type CreateTodoListRequest, type TodoListObjectDTO} from '@/client'
+import { type CreateTodoListRequest, type TodoListObjectDTO} from '../client'
 
 
 defineProps<{

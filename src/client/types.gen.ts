@@ -20,24 +20,24 @@ export type CreateUserRequest = {
     password?: (string) | null;
 };
 
-export type SubTaskDTO = {
+export type SubTaskDBO = {
     id?: number;
     subTaskName?: (string) | null;
     taskId?: number;
 };
 
-export type TaskDTO = {
+export type TaskDBO = {
     id?: number;
     taskName?: (string) | null;
     todoListId?: number;
-    subTasks?: Array<SubTaskDTO> | null;
+    subTasks?: Array<SubTaskDBO> | null;
 };
 
-export type TodoListDTO = {
+export type TodoListDBO = {
     id?: number;
     listName?: (string) | null;
     userId?: number;
-    tasks?: Array<TaskDTO> | null;
+    tasks?: Array<TaskDBO> | null;
 };
 
 export type TodoListObject = {
@@ -52,12 +52,12 @@ export type TodoListObjectDTO = {
     todoListObject?: Array<TodoListObject> | null;
 };
 
-export type UserDTO = {
+export type UserDBO = {
     id?: number;
     salt?: (string) | null;
     username?: (string) | null;
     hashedPassword?: (string) | null;
-    todoLists?: Array<TodoListDTO> | null;
+    todoLists?: Array<TodoListDBO> | null;
 };
 
 export type GetUserInputData = {
@@ -105,7 +105,7 @@ export type PostUserData = {
     body: CreateUserRequest;
 };
 
-export type PostUserResponse = (UserDTO);
+export type PostUserResponse = (UserDBO);
 
 export type PostUserError = unknown;
 

@@ -60,7 +60,7 @@ export const CreateUserRequestSchema = {
     additionalProperties: false
 } as const;
 
-export const SubTaskDTOSchema = {
+export const SubTaskDBOSchema = {
     type: 'object',
     properties: {
         id: {
@@ -79,7 +79,7 @@ export const SubTaskDTOSchema = {
     additionalProperties: false
 } as const;
 
-export const TaskDTOSchema = {
+export const TaskDBOSchema = {
     type: 'object',
     properties: {
         id: {
@@ -97,7 +97,7 @@ export const TaskDTOSchema = {
         subTasks: {
             type: 'array',
             items: {
-                '$ref': '#/components/schemas/SubTaskDTO'
+                '$ref': '#/components/schemas/SubTaskDBO'
             },
             nullable: true
         }
@@ -105,7 +105,7 @@ export const TaskDTOSchema = {
     additionalProperties: false
 } as const;
 
-export const TodoListDTOSchema = {
+export const TodoListDBOSchema = {
     type: 'object',
     properties: {
         id: {
@@ -123,7 +123,7 @@ export const TodoListDTOSchema = {
         tasks: {
             type: 'array',
             items: {
-                '$ref': '#/components/schemas/TaskDTO'
+                '$ref': '#/components/schemas/TaskDBO'
             },
             nullable: true
         }
@@ -175,7 +175,7 @@ export const TodoListObjectDTOSchema = {
     additionalProperties: false
 } as const;
 
-export const UserDTOSchema = {
+export const UserDBOSchema = {
     type: 'object',
     properties: {
         id: {
@@ -197,7 +197,7 @@ export const UserDTOSchema = {
         todoLists: {
             type: 'array',
             items: {
-                '$ref': '#/components/schemas/TodoListDTO'
+                '$ref': '#/components/schemas/TodoListDBO'
             },
             nullable: true
         }
