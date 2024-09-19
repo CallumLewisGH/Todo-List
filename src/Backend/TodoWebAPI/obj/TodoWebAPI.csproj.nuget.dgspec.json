@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\callu\\source\\repos\\VisualStudio C# backend\\TodoWebAPI\\TodoWebAPI.csproj": {}
+    "C:\\Users\\callu\\source\\repos\\VisualStudio C# backend - Copy\\TodoWebAPI\\TodoWebAPI.csproj": {}
   },
   "projects": {
-    "C:\\Users\\callu\\source\\repos\\VisualStudio C# backend\\TodoWebAPI\\TodoWebAPI.csproj": {
+    "C:\\Users\\callu\\source\\repos\\VisualStudio C# backend - Copy\\TodoWebAPI\\TodoWebAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\callu\\source\\repos\\VisualStudio C# backend\\TodoWebAPI\\TodoWebAPI.csproj",
+        "projectUniqueName": "C:\\Users\\callu\\source\\repos\\VisualStudio C# backend - Copy\\TodoWebAPI\\TodoWebAPI.csproj",
         "projectName": "TodoWebAPI",
-        "projectPath": "C:\\Users\\callu\\source\\repos\\VisualStudio C# backend\\TodoWebAPI\\TodoWebAPI.csproj",
+        "projectPath": "C:\\Users\\callu\\source\\repos\\VisualStudio C# backend - Copy\\TodoWebAPI\\TodoWebAPI.csproj",
         "packagesPath": "C:\\Users\\callu\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\callu\\source\\repos\\VisualStudio C# backend\\TodoWebAPI\\obj\\",
+        "outputPath": "C:\\Users\\callu\\source\\repos\\VisualStudio C# backend - Copy\\TodoWebAPI\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

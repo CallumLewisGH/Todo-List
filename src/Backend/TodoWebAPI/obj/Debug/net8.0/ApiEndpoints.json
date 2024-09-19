@@ -1,7 +1,7 @@
 [
   {
-    "ContainingType": "Program\u002B\u003C\u003Ec",
-    "Method": "\u003C\u003CMain\u003E$\u003Eb__0_9",
+    "ContainingType": "TodoWebAPI.Endpoints.UsersEndpoints\u002B\u003C\u003Ec",
+    "Method": "\u003CMapUsersEndpoints\u003Eb__0_4",
     "RelativePath": "user/",
     "HttpMethod": "POST",
     "IsController": false,
@@ -15,15 +15,17 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "System.Void",
-        "MediaTypes": [],
+        "Type": "TodoWebAPI.DTOs.UserDBO",
+        "MediaTypes": [
+          "application/json"
+        ],
         "StatusCode": 200
       }
     ]
   },
   {
-    "ContainingType": "Program\u002B\u003C\u003Ec",
-    "Method": "\u003C\u003CMain\u003E$\u003Eb__0_7",
+    "ContainingType": "TodoWebAPI.Endpoints.UsersEndpoints\u002B\u003C\u003Ec",
+    "Method": "\u003CMapUsersEndpoints\u003Eb__0_2",
     "RelativePath": "user/{id}",
     "HttpMethod": "GET",
     "IsController": false,
@@ -44,8 +46,8 @@
     ]
   },
   {
-    "ContainingType": "Program\u002B\u003C\u003Ec",
-    "Method": "\u003C\u003CMain\u003E$\u003Eb__0_8",
+    "ContainingType": "TodoWebAPI.Endpoints.UsersEndpoints\u002B\u003C\u003Ec",
+    "Method": "\u003CMapUsersEndpoints\u003Eb__0_3",
     "RelativePath": "user/data/{id}",
     "HttpMethod": "GET",
     "IsController": false,
@@ -59,7 +61,7 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "System.Collections.Generic.List\u00601[[TodoWebAPI.DTOs.TodoListObjectDTO, TodoWebAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "System.Collections.Generic.List\u00601[[TodoWebAPI.DTOs.UserDataDTO\u002BTodoListObjectDTO, TodoWebAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "application/json"
         ],
@@ -68,9 +70,9 @@
     ]
   },
   {
-    "ContainingType": "Program\u002B\u003C\u003Ec",
-    "Method": "\u003C\u003CMain\u003E$\u003Eb__0_5",
-    "RelativePath": "user/input",
+    "ContainingType": "TodoWebAPI.Endpoints.UsersEndpoints\u002B\u003C\u003Ec",
+    "Method": "\u003CMapUsersEndpoints\u003Eb__0_0",
+    "RelativePath": "user/input/",
     "HttpMethod": "GET",
     "IsController": false,
     "Order": 0,
@@ -95,30 +97,8 @@
     ]
   },
   {
-    "ContainingType": "Program\u002B\u003C\u003Ec",
-    "Method": "\u003C\u003CMain\u003E$\u003Eb__0_6",
-    "RelativePath": "user/input/username",
-    "HttpMethod": "GET",
-    "IsController": false,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "Username",
-        "Type": "System.String",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": [
-      {
-        "Type": "System.Void",
-        "MediaTypes": [],
-        "StatusCode": 200
-      }
-    ]
-  },
-  {
-    "ContainingType": "Program\u002B\u003C\u003Ec",
-    "Method": "\u003C\u003CMain\u003E$\u003Eb__0_10",
+    "ContainingType": "TodoWebAPI.Endpoints.TodoListsEndpoints\u002B\u003C\u003Ec",
+    "Method": "\u003CMapTodoListEndpoints\u003Eb__0_0",
     "RelativePath": "user/todoList/",
     "HttpMethod": "POST",
     "IsController": false,
@@ -139,8 +119,8 @@
     ]
   },
   {
-    "ContainingType": "Program\u002B\u003C\u003Ec",
-    "Method": "\u003C\u003CMain\u003E$\u003Eb__0_11",
+    "ContainingType": "TodoWebAPI.Endpoints.TodoListsEndpoints\u002B\u003C\u003Ec",
+    "Method": "\u003CMapTodoListEndpoints\u003Eb__0_1",
     "RelativePath": "user/todoList/{id}",
     "HttpMethod": "DELETE",
     "IsController": false,
@@ -161,8 +141,8 @@
     ]
   },
   {
-    "ContainingType": "Program\u002B\u003C\u003Ec",
-    "Method": "\u003C\u003CMain\u003E$\u003Eb__0_12",
+    "ContainingType": "TodoWebAPI.Endpoints.TasksEndpoints\u002B\u003C\u003Ec",
+    "Method": "\u003CMapTasksEndpoints\u003Eb__0_0",
     "RelativePath": "user/todoList/task/",
     "HttpMethod": "POST",
     "IsController": false,
@@ -183,8 +163,8 @@
     ]
   },
   {
-    "ContainingType": "Program\u002B\u003C\u003Ec",
-    "Method": "\u003C\u003CMain\u003E$\u003Eb__0_13",
+    "ContainingType": "TodoWebAPI.Endpoints.TasksEndpoints\u002B\u003C\u003Ec",
+    "Method": "\u003CMapTasksEndpoints\u003Eb__0_1",
     "RelativePath": "user/todoList/task/{id}",
     "HttpMethod": "DELETE",
     "IsController": false,
@@ -205,8 +185,8 @@
     ]
   },
   {
-    "ContainingType": "Program\u002B\u003C\u003Ec",
-    "Method": "\u003C\u003CMain\u003E$\u003Eb__0_14",
+    "ContainingType": "TodoWebAPI.Endpoints.SubTasksEndpoints\u002B\u003C\u003Ec",
+    "Method": "\u003CMapSubTasksEndpoints\u003Eb__0_0",
     "RelativePath": "user/todoList/task/subtask/",
     "HttpMethod": "POST",
     "IsController": false,
@@ -215,6 +195,28 @@
       {
         "Name": "request",
         "Type": "TodoWebAPI.DTOs.CreateSubTaskRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "TodoWebAPI.Endpoints.UsersEndpoints\u002B\u003C\u003Ec",
+    "Method": "\u003CMapUsersEndpoints\u003Eb__0_1",
+    "RelativePath": "user/username/",
+    "HttpMethod": "GET",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "Username",
+        "Type": "System.String",
         "IsRequired": true
       }
     ],
