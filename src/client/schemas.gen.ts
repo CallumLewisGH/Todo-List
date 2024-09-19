@@ -60,7 +60,7 @@ export const CreateUserRequestSchema = {
     additionalProperties: false
 } as const;
 
-export const SubTaskDBOSchema = {
+export const SubTaskDTOSchema = {
     type: 'object',
     properties: {
         id: {
@@ -79,7 +79,7 @@ export const SubTaskDBOSchema = {
     additionalProperties: false
 } as const;
 
-export const TaskDBOSchema = {
+export const TaskDTOSchema = {
     type: 'object',
     properties: {
         id: {
@@ -93,19 +93,12 @@ export const TaskDBOSchema = {
         todoListId: {
             type: 'integer',
             format: 'int32'
-        },
-        subTasks: {
-            type: 'array',
-            items: {
-                '$ref': '#/components/schemas/SubTaskDBO'
-            },
-            nullable: true
         }
     },
     additionalProperties: false
 } as const;
 
-export const TodoListDBOSchema = {
+export const TodoListDTOSchema = {
     type: 'object',
     properties: {
         id: {
@@ -119,13 +112,6 @@ export const TodoListDBOSchema = {
         userId: {
             type: 'integer',
             format: 'int32'
-        },
-        tasks: {
-            type: 'array',
-            items: {
-                '$ref': '#/components/schemas/TaskDBO'
-            },
-            nullable: true
         }
     },
     additionalProperties: false
@@ -175,30 +161,15 @@ export const TodoListObjectDTOSchema = {
     additionalProperties: false
 } as const;
 
-export const UserDBOSchema = {
+export const UserDTOSchema = {
     type: 'object',
     properties: {
         id: {
             type: 'integer',
             format: 'int32'
         },
-        salt: {
-            type: 'string',
-            nullable: true
-        },
         username: {
             type: 'string',
-            nullable: true
-        },
-        hashedPassword: {
-            type: 'string',
-            nullable: true
-        },
-        todoLists: {
-            type: 'array',
-            items: {
-                '$ref': '#/components/schemas/TodoListDBO'
-            },
             nullable: true
         }
     },

@@ -95,6 +95,14 @@ const userStore = useUserStore();
 
 
 async function handleUserCreateCheck(usernameInput?: string, passwordInput?: string){
+  if (usernameInput == ''){
+    return;
+  }
+
+  if (passwordInput == ''){
+    return;
+  }
+
   user.value = await checkUsernameInfo(usernameInput)
 
   if (user.value == undefined) {
