@@ -84,25 +84,42 @@ import "vue-toastification/dist/index.css";
 import router from "@/router";
 import { postUser } from "@/client";
 import { checkUsernameInfo } from "@/client/createUserByInput";
+import { useUserStore } from "@/store";
+import { checkUserInfo } from "@/client/getUserByInput";
 
 const user = ref<UserDTO>();
 const usernameInput = ref<string>();
 const passwordInput = ref<string>();
 const toast = useToast();
+const userStore = useUserStore();
 
 
 async function handleUserCreateCheck(usernameInput?: string, passwordInput?: string){
-  user.value = await checkUsernameInfo( usernameInput )
+  if (usernameInput == ''){
+    return;
+  }
+
+  if (passwordInput == ''){
+    return;
+  }
+
+  user.value = await checkUsernameInfo(usernameInput)
+
   if (user.value == undefined) {
     //Not Found
-    postUser({body: {
+    await postUser({body: {
       username: usernameInput,
       password: passwordInput
     }})
+
+    toast.success("New User Created and Login Memorised")
     
-    toast.success("New User Created!")
-    
-    router.push("login")
+    user.value = await checkUserInfo(usernameInput, passwordInput)
+
+    userStore.setUserID(user.value?.id?? 0)
+    localStorage.setItem('UserId',JSON.stringify(user.value?.id))
+
+    router.push("todo")
 
     
 

@@ -41,20 +41,29 @@
 
 onMounted(async () => {
   userId.value = userStore.userID
-  if(userId.value != undefined){
-  inputList.value = await readDataById(userId.value)?? []
-  }
-  else {
+
+  if (userId.value == undefined){
+    userId.value = JSON.parse(localStorage.getItem('UserId') || 'null')
+  }  
+  
+  if (userId.value == undefined){
     router.push("/login")
   }
-  usingList.value = inputList.value[usingList.value.listId?? 0]?? defaultList.value
+ 
+
+
+  inputList.value = await readDataById(userId.value?? 0)?? []
+  
+  
+  
+  usingList.value = inputList.value[0]?? defaultList.value
 });
 
   const updateList = async(newList: CreateTodoListRequest) => {
     await postUserTodoList({body: newList })
     inputList.value = await readDataById(userId.value?? 0)?? [defaultList.value]
     usingList.value = inputList.value.find(x => x.listName == newList.listName) ?? defaultList.value
-
+    usingIndex.value = inputList.value.findIndex(x => x.listName == newList.listName)
 
 };
 

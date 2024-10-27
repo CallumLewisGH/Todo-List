@@ -101,8 +101,10 @@ async function handleUserCheck(usernameInput?: string, passwordInput?: string){
   }
 
   else{
-    toast.success("Username and Password Recognised!")
+    toast.success("Username and Password Recognised! And login memorised! ")
     userStore.setUserID(user.value.id?? 0)
+    localStorage.setItem('UserId',JSON.stringify(user.value.id))
+
     router.push("todo")
   }
 

@@ -2,7 +2,7 @@
     <div class="todo_list_header">
     <span>{{usingList.listName}}</span>
     <div v-if="usingList.listName !== 'Create a Todo-List'">
-        <img src="../assets/Cross.png" width="17.5vh" style=" float:right; margin-top: 1%; margin-right: 1%;" @click="handleDeleteList(usingList)">
+        <img src="../assets/Cross.png" width="17.5vh" style=" float:right; margin-top: -2%; margin-right: 1%;" @click="handleDeleteList(usingList)">
     </div>
     </div>
         <template v-for="main_item,index in usingList.todoListObject">
@@ -10,7 +10,7 @@
                 <li>{{main_item.mainItem}}</li>
 
                 <div v-if="usingList.listName !== 'Create a Todo-List'">
-                    <img src="../assets/Cross.png" width="17.5vh" style=" float:right; margin-top: -2%; margin-right: 5%;" @click="handleMainItem(main_item)">
+                    <img src="../assets/Cross.png" width="17.5vh" style=" float:right; margin-top: -1.5%; margin-right: 5%;" @click="handleMainItem(main_item)">
                 </div>
 
                 <template v-for="sub_item in main_item.subItemList">
@@ -35,7 +35,7 @@
 
 <script setup lang="ts">
 import { ref, } from 'vue';
-import { type CreateSubTaskRequest, type CreateTaskRequest, type TodoListObject, type TodoListObjectDTO } from '@/client/';
+import { type CreateSubTaskRequest, type CreateTaskRequest, type TodoListObject, type TodoListObjectDTO } from '../client';
 
 const input_text1 = ref<string>('')
 const input_text2 = ref<string>('')

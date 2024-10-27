@@ -60,6 +60,63 @@ export const CreateUserRequestSchema = {
     additionalProperties: false
 } as const;
 
+export const SubTaskDTOSchema = {
+    type: 'object',
+    properties: {
+        id: {
+            type: 'integer',
+            format: 'int32'
+        },
+        subTaskName: {
+            type: 'string',
+            nullable: true
+        },
+        taskId: {
+            type: 'integer',
+            format: 'int32'
+        }
+    },
+    additionalProperties: false
+} as const;
+
+export const TaskDTOSchema = {
+    type: 'object',
+    properties: {
+        id: {
+            type: 'integer',
+            format: 'int32'
+        },
+        taskName: {
+            type: 'string',
+            nullable: true
+        },
+        todoListId: {
+            type: 'integer',
+            format: 'int32'
+        }
+    },
+    additionalProperties: false
+} as const;
+
+export const TodoListDTOSchema = {
+    type: 'object',
+    properties: {
+        id: {
+            type: 'integer',
+            format: 'int32'
+        },
+        listName: {
+            type: 'string',
+            nullable: true
+        },
+        userId: {
+            type: 'integer',
+            format: 'int32'
+        }
+    },
+    additionalProperties: false
+} as const;
+
 export const TodoListObjectSchema = {
     type: 'object',
     properties: {
@@ -98,6 +155,21 @@ export const TodoListObjectDTOSchema = {
             items: {
                 '$ref': '#/components/schemas/TodoListObject'
             },
+            nullable: true
+        }
+    },
+    additionalProperties: false
+} as const;
+
+export const UserDTOSchema = {
+    type: 'object',
+    properties: {
+        id: {
+            type: 'integer',
+            format: 'int32'
+        },
+        username: {
+            type: 'string',
             nullable: true
         }
     },
